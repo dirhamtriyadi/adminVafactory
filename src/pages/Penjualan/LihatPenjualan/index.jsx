@@ -1,0 +1,35 @@
+import {
+  React,
+  PanelContent,
+  useDispatch,
+  useEffect,
+  acttionPenjualan,
+  useSelector,
+  selectorUtility,
+  utilityActions,
+} from "../../../components";
+import DetailPenjualan from "./form/DetailPenjualan";
+import TabelPenjualan from "./tabel";
+
+const LihatPenjualan = () => {
+  const dispatch = useDispatch();
+  const form = useSelector(selectorUtility.setForm);
+  useEffect(() => {
+    dispatch(acttionPenjualan.getDataPenjualan());
+    return () => {
+      dispatch(utilityActions.setForm('LihatPenjualan'))
+    }
+  }, [dispatch]);
+    
+  return (
+    <PanelContent menu={form.form_name === "LihatPenjualan"  ? "Lihat Penjualan" : "Detail Penjualan"}>
+      {form.form_name === "DetailPenjualan" ? (
+        <DetailPenjualan />
+        ) : (
+        <TabelPenjualan/>
+      )}
+    </PanelContent>
+  );
+};
+
+export default LihatPenjualan;

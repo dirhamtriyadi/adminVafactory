@@ -1,0 +1,304 @@
+import {
+  React,
+  PanelContent,
+  Field,
+  useDispatch,
+  ReanderField,
+  reduxForm,
+  connect,
+  useEffect,
+  selectorMaster,
+  useSelector,
+  masterActions,
+  ReanderSelect,
+  getToday,
+  change,
+  getItem,
+  NumberOnly,
+  currencyMask,
+  selectorUtility,
+  useState,
+  ToastNotification,
+} from "../../components";
+import Layout1 from "./form/Layout1";
+import { simpanPembayaran, tambahBarang } from "./redux";
+
+let Penjualan = ({ pristine, submitting }) => {
+  const dispatch = useDispatch();
+
+  const datJenisPembayaran = useSelector(selectorMaster.getDataJenisPembayaran);
+  const customer = useSelector(selectorMaster.getDataCustomer);
+
+  const [sisa, setSisa] = useState(0);
+  const [totalPembayaran, setTotalBayar] = useState(0);
+
+  const [cutomerId, setCustomer] = useState(undefined);
+  const [pembayaran, pilihPembayaran] = useState(undefined);
+
+  useEffect(() => {
+    dispatch(masterActions.getDataJenisPembayaran());
+    dispatch(masterActions.getDataCustomer());
+
+    dispatch(change("Penjualan", "tgl_transaksi", getToday()));
+    dispatch(change("Penjualan", "kasir", getItem("userdata").user_id));
+  }, [dispatch]);
+
+  let cek = datJenisPembayaran[0] === undefined ? [] : datJenisPembayaran[0];
+  let cekCustomer = customer[0] === undefined ? [] : customer[0];
+
+  const databarang = useSelector(selectorUtility.getDataEdit);
+  const total =
+    databarang.length === 0
+      ? getItem("data_barang_pembelian")
+          .reduce((a, b) => a + Number(b.total), 0)
+          .toLocaleString("kr-Ko")
+      : databarang
+          .reduce((a, b) => a + Number(b.total), 0)
+          .toLocaleString("kr-Ko");
+
+  const [totalBeli,setTotalBeli] = useState(total);
+
+  const handleSubmit = () => {
+    dispatch(tambahBarang());
+  };
+  const setTotal = (jml) => {
+    // let total = document.getElementById("total").value;
+
+    let sisa = Number(jml) - Number(NumberOnly(totalBeli));
+
+    setSisa(Math.abs(sisa));
+    dispatch(change("Penjualan", "total", jml));
+    setTotalBayar(jml);
+
+  // console.log(Number(NumberOnly(totalBeli)))
+  console.log(Number(jml) - Number(NumberOnly(totalBeli)))
+
+  };
+
+  const setTotalCash = (e) => {
+    let cash = Number(NumberOnly(e));
+    let hasil = Number(cash) - Number(NumberOnly(totalBeli));
+    setSisa(Math.abs(hasil));
+    setTotalBayar(cash);
+  };
+  const cekData = () => {
+    if (cutomerId === undefined) {
+      ToastNotification("info", "Customer Belum Dipilih");
+      return false;
+    }
+    if (pembayaran === undefined) {
+      ToastNotification("info", "Jenis Pembayaran Belum Dipilih");
+      return false;
+    }
+    dispatch(simpanPembayaran());
+
+    setTotalBayar(0)
+    setTotalBeli(0)
+  };
+  return (
+    <div className="row">
+      <div className="col-8">
+        <Layout1 onSubmit={() => handleSubmit()} />
+      </div>
+
+      <div className="col-4">
+        <PanelContent>
+          <div className="row">
+            <div className="col-6">
+              <Field
+                name="idCustomer"
+                onChange={(e) => setCustomer(e)}
+                component={ReanderSelect}
+                type="text"
+                options={cekCustomer.map((list) => {
+                  let row = {
+                    value: list.id,
+                    name: list.name,
+                  };
+                  return row;
+                })}
+                label="Pilih Type"
+                placeholder="Masukan Type Customer"
+              />
+            </div>
+            <div className="col-6">
+              <Field
+                name="jenis_pembayaran"
+                onChange={(e) => pilihPembayaran(e)}
+                component={ReanderSelect}
+                options={cek.map((list) => {
+                  let row = {
+                    value: list.id,
+                    name: list.name,
+                  };
+                  return row;
+                })}
+                label="Jenis Pembayaran"
+                placeholder="Pilih Jenis Pembayaran"
+              />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-6 text-left">
+              <h3>Total</h3>
+            </div>
+            <div className="col-6 text-right">
+              <h3>Rp.{total}</h3>
+            </div>
+            <div className="col-12">
+              <div className="card" style={{ backgroundColor: "#eceff1" }}>
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-6 text-left">
+                      <h3>Cash</h3>
+                    </div>
+                    <div className="col-6 text-right">
+                      <Field
+                        id="total"
+                        name="total"
+                        component={ReanderField}
+                        type="text"
+                        {...currencyMask}
+                        normalize={NumberOnly}
+                        onBlur={(e) => setTotalCash(e.target.value)}
+                        placeholder="0"
+                      />
+                    </div>
+                    <div className="col-12">
+                      <div className="row">
+                        <div className="col-4">
+                          <button
+                            type="button"
+                            onClick={() => setTotal(2000)}
+                            style={{ backgroundColor: "white" }}
+                            className="btn btn-block"
+                          >
+                            Rp.2.000
+                          </button>
+                        </div>
+                        <div className="col-4">
+                          <button
+                            type="button"
+                            onClick={() => setTotal(5000)}
+                            style={{ backgroundColor: "white" }}
+                            className="btn  btn-block"
+                          >
+                            Rp.5.000
+                          </button>
+                        </div>
+                        <div className="col-4">
+                          <button
+                            type="button"
+                            onClick={() => setTotal(10000)}
+                            style={{ backgroundColor: "white" }}
+                            className="btn btn-block"
+                          >
+                            Rp.10.000
+                          </button>
+                        </div>
+                        <div className="col-12">
+                          <br />
+                        </div>
+                        <div className="col-4">
+                          <button
+                            type="button"
+                            onClick={() => setTotal(20000)}
+                            style={{ backgroundColor: "white" }}
+                            className="btn btn-block"
+                          >
+                            Rp.20.000
+                          </button>
+                        </div>
+                        <div className="col-4">
+                          <button
+                            type="button"
+                            onClick={() => setTotal(50000)}
+                            style={{ backgroundColor: "white" }}
+                            className="btn  btn-block"
+                          >
+                            Rp.50.000
+                          </button>
+                        </div>
+                        <div className="col-4">
+                          <button
+                            type="button"
+                            onClick={() => setTotal(100000)}
+                            style={{ backgroundColor: "white" }}
+                            className="btn btn-block"
+                          >
+                            Rp.100.000
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 mt-4">
+              <div
+                className={`alert  ${
+                  parseInt(totalPembayaran) < Number(NumberOnly(totalBeli))
+                    ? "alert-danger"
+                    : "alert-success"
+                }`}
+              >
+                <div className="row">
+                  <div className="col-6 text-left">
+                    <h5>
+                      {parseInt(totalPembayaran) < Number(NumberOnly(totalBeli))
+                        ? "Kurang"
+                        : parseInt(totalPembayaran) ===
+                          Number(NumberOnly(totalBeli))
+                        ?  "Pass"
+                        : "Kembali"}
+                    </h5>
+                  </div>
+                  <div className="col-6 text-right">
+                    <h5>Rp.{sisa.toLocaleString("kr-Ko")}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-12">
+              <button
+                type="submit"
+                onClick={() => cekData()}
+                disabled={
+                  parseInt(totalPembayaran) < Number(NumberOnly(totalBeli))
+                    ? true
+                    : false
+                }
+                className="btn btn-primary btn-block"
+              >
+                Bayar
+              </button>
+            </div>
+          </div>
+        </PanelContent>
+      </div>
+    </div>
+  );
+};
+
+Penjualan = reduxForm({
+  form: "Penjualan",
+  enableReinitialize: true,
+})(Penjualan);
+export default connect(null)(Penjualan);
+
+// Penjualan = reduxForm({
+//   form: "Penjualan",
+//   enableReinitialize: true,
+// })(Penjualan);
+// export default connect((state) => {
+//   const selector = formValueSelector("Penjualan");
+//   const { total } = selector(state, "total");
+//   console.log(total)
+
+//   // console.log(totalPembayaran)
+//   // return {
+//   //   // totalPembayaran: totalPembayaran || 0,
+//   // };
+// })(Penjualan);
