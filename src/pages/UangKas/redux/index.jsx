@@ -7,7 +7,7 @@ export const simpanUangKas = () => {
         
         let hasil = {
             transaction_date : data.tanggal,
-            user_id : getItem('userdata').user_id,
+            user_id : getItem('userdata').id,
             cash_flow_type : data.type,
             amount : Number(data.nominal),
             payment_methods_id : data.jenis || 0,
