@@ -6,11 +6,11 @@ const server = 'http://localhost:8000/api/';
 export function postImage(file, name) {
   return new Promise((resolve, reject) => {
     const storage = firebase.storage();
-    let stoageRef = storage.ref(`${name}.jpg`);
-    stoageRef
+    let storageRef = storage.ref(`${name}.jpg`);
+    storageRef
       .put(file)
       .then((res) => {
-        stoageRef.getDownloadURL().then(function (url) {
+        storageRef.getDownloadURL().then(function (url) {
           resolve(url);
         });
       })
@@ -22,8 +22,8 @@ export function postImage(file, name) {
 export function getImage(file) {
   return new Promise((resolve, reject) => {
     const storage = firebase.storage();
-    let stoageRef = storage.ref(`foto_produk/${file}.jpg`);
-    stoageRef
+    let storageRef = storage.ref(`foto_produk/${file}.jpg`);
+    storageRef
       .getDownloadURL()
       .then(function (url) {
         // console.log('ini url', url)
