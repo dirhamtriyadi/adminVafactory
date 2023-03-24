@@ -28,7 +28,7 @@ const getDataPenjualan = () => {
   };
 
 
-  const acttionPenjualan = {
+  const actionPenjualan = {
     getDataPenjualan,
   }
-  export default acttionPenjualan
+  export default actionPenjualan
