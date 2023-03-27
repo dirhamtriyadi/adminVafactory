@@ -15,7 +15,7 @@ import {
   getItem,
   ToastNotification,
   playSound,
-  acttionPenjualan,
+  actionPenjualan,
   // NumberOnly,
   // currencyMask,
   // selectorUtility,
@@ -34,7 +34,7 @@ let Penjualan = () => {
   useEffect(() => {
     dispatch(masterActions.getDataJenisPembayaran());
     dispatch(masterActions.getDataCustomer());
-    dispatch(acttionPenjualan.getDataPenjualan())    
+    dispatch(actionPenjualan.getDataPenjualan())    
     dispatch(change("Penjualan", "tgl_transaksi", getToday()));
     dispatch(change("Penjualan", "kasir", getItem("userdata").user_id));
     return () => {

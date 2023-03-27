@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { acttionPenjualan, deleteData, getToday, ToastNotification } from "../../../../components";
+import { actionPenjualan, deleteData, getToday, ToastNotification } from "../../../../components";
 
 export const hapusTransaksi = (row) => {
   return async (dispatch, getState) => {
@@ -19,7 +19,7 @@ export const hapusTransaksi = (row) => {
               deleteData("transactions/" + row.id)
                 .then((res) => {
                   ToastNotification("success", "Data berhasil dihapus");
-                  dispatch(acttionPenjualan.getDataPenjualan());
+                  dispatch(actionPenjualan.getDataPenjualan());
                 })
                 .catch((err) => {
                   ToastNotification(

@@ -3,7 +3,7 @@ import {
   PanelContent,
   useDispatch,
   useEffect,
-  acttionPenjualan,
+  actionPenjualan,
   useSelector,
   selectorUtility,
   utilityActions,
@@ -15,7 +15,7 @@ const LihatPenjualan = () => {
   const dispatch = useDispatch();
   const form = useSelector(selectorUtility.setForm);
   useEffect(() => {
-    dispatch(acttionPenjualan.getDataPenjualan());
+    dispatch(actionPenjualan.getDataPenjualan());
     return () => {
       dispatch(utilityActions.setForm('LihatPenjualan'))
     }
