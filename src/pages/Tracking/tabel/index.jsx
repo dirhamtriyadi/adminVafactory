@@ -29,15 +29,21 @@ const TabelTracking = () => {
             formatter: (rowcontent, row) => {
                 return (
                     <div className="row text-center">
-                        <div className="col-6">
-                            <button className="btn btn-primary w-100" onClick={() => showModal(row, true)}>
-                                <i className="fa fa-edit"></i>
-                            </button>
+                        <div className="col-6 text-right">
+                        <button
+                            onClick={() => showModal(row, true)}
+                            className="btn btn-primary"
+                        >
+                            <i className="fa fa-edit"></i>
+                        </button>
                         </div>
-                        <div className="col-6">
-                            <button className="btn btn-danger w-100" onClick={() => dispatch(hapusDataTracking(row))}>
-                                <i className="fa fa-trash"></i>
-                            </button>
+                        <div className="col-6 text-left">
+                        <button
+                            onClick={() => dispatch(hapusDataTracking(row))}
+                            className="btn btn-danger ml-2"
+                        >
+                            <i className="fa fa-trash"></i>
+                        </button>
                         </div>
                     </div>
                 );
@@ -45,13 +51,14 @@ const TabelTracking = () => {
         },
     ]
     const showModal = (row, isEdit) => {
+        console.log(isEdit);
         dispatch(utilityActions.getDataEdit(row))
         dispatch(utilityActions.showModal())
-        dispatch(utilityActions.isEdit(isEdit))
+        dispatch(utilityActions.isEdit(isEdit ? true : false))
     }
 
     return (
-        <Tabel handleClick={() => showModal(false, "TAMBAH")} keyField="id" tambahData={true} columns={columns} data={data[0]} />
+        <Tabel handleClick={() => showModal(false)} keyField="id" tambahData={true} columns={columns} data={data[0]} />
     )
 }
 

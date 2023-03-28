@@ -7,7 +7,7 @@ let FormDataTracking = ({pristine, submitting}) => {
     const isEdit = useSelector(selectorUtility.isEdit)
     const isLoading = useSelector(selectorUtility.isLoading)
     useEffect(() => {
-        document.getElementById('name').focus()
+        isEdit ? document.getElementById('name').focus() : document.getElementById('name').focus()
     }, [isEdit])
 
   return (
@@ -15,10 +15,10 @@ let FormDataTracking = ({pristine, submitting}) => {
         {isEdit ? (
             <>
                 <Field
-                    name="tracking_id"
+                    name="id"
                     component={HiidenFiled}
                     type="hidden"
-                    label="tracking_id"
+                    label="id"
                     readOnly={isEdit}
                 />
             </>

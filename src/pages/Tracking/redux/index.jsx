@@ -80,7 +80,7 @@ export const hapusDataTracking = (row) => {
                         dispatch(masterActions.getDataTracking())
                     })
                     .catch((err) => {
-                        console.log(err);
+                        // console.log(err);
                         ToastNotification("info", "Hapus data tracking gagal, silahkan coba lagi !!!")
                     })
             }
