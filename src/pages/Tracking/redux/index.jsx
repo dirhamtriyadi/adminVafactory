@@ -27,7 +27,6 @@ export const simpanDataTracking = () => {
                 ToastNotification("success", "Berhasil mengedit data tracking")
             })
             .catch((err) => {
-                console.log(data);
                 ToastNotification("info", "Edit data tracking gagal, silahkan coba lagi !!!")
                 dispatch(utilityActions.setLoading(false))
             })

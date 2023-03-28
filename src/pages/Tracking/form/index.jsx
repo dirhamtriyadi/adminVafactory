@@ -7,7 +7,7 @@ let FormDataTracking = ({pristine, submitting}) => {
     const isEdit = useSelector(selectorUtility.isEdit)
     const isLoading = useSelector(selectorUtility.isLoading)
     useEffect(() => {
-        isEdit ? document.getElementById('name').focus() : document.getElementById('name').focus()
+        document.getElementById('name').focus()
     }, [isEdit])
 
   return (

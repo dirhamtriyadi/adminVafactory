@@ -51,10 +51,9 @@ const TabelTracking = () => {
         },
     ]
     const showModal = (row, isEdit) => {
-        console.log(isEdit);
         dispatch(utilityActions.getDataEdit(row))
         dispatch(utilityActions.showModal())
-        dispatch(utilityActions.isEdit(isEdit ? true : false))
+        dispatch(utilityActions.isEdit(isEdit))
     }
 
     return (
