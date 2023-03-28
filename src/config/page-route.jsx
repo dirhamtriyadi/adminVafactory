@@ -1,6 +1,6 @@
 import { React } from "../components/helpers";
 
-import { DashboardV1, DataBahan, DataJenis, Login, DataUsers, HakAkses,  UangKas, JenisPembayaran, DataBarang, Penjualan, DataCustomer, LaporanUangKas } from "../pages";
+import { DashboardV1, DataBahan, DataJenis, Login, DataUsers, HakAkses,  UangKas, JenisPembayaran, DataBarang, Penjualan, DataCustomer, LaporanUangKas, Tracking } from "../pages";
 import LihatPenjualan from "../pages/Penjualan/LihatPenjualan";
 
 const routes = [
@@ -101,6 +101,14 @@ const routes = [
     title: "Laporan Uang kas",
     component: () => <LaporanUangKas />,
   },
+
+  // Ade
+  {
+    path: "/tracking",
+    exact: true,
+    title: "Tracking",
+    component: () => <Tracking />,
+  }
 
 ];
 

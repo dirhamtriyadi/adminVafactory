@@ -37,7 +37,7 @@
   },
   "homepage": "./",
   "scripts": {
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && set REACT_APP_BACKEND_URL=http://localhost:8000/api/ && react-scripts start",
+    "start": "export NODE_OPTIONS=--openssl-legacy-provider && export REACT_APP_BACKEND_URL=http://localhost:8000/api/ && react-scripts start",
     "build": "node generate-buildno.js && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

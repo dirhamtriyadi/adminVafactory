@@ -46,7 +46,7 @@ const Menu = [
     title: "Data Users",
   },
 
-    {
+  {
     path: "#",
     icon: "fas fa-paste",
     title: "Laporan",
@@ -54,6 +54,13 @@ const Menu = [
       { path: "/laporan-uang-kas", title: "Laporan Uang Kas" },
     ],
   },
+
+  // Ade
+  {
+    path: "/tracking",
+    icon: "fas fa-truck",
+    title: "Tracking",
+  }
 
 ];
 
