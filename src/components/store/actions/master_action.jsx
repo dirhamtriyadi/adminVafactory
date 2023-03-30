@@ -9,6 +9,7 @@ export const GET_DATA_CUSTOMER = "GET_DATA_CUSTOMER";
 
 // Ade
 export const GET_DATA_TRACKING = "GET_DATA_TRACKING";
+export const GET_DATA_ORDERS = "GET_DATA_ORDERS";
 
 
 
@@ -127,6 +128,23 @@ const getDataJenisPembayaran = () => {
     };
   };
 
+  const getDataOrders = () => {
+    return (dispatch) => {
+      getData("orders")
+        .then((res) => {
+          dispatch({
+            type: GET_DATA_ORDERS,
+            payload: {
+              data: res.data,
+            },
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+  };
+
 
   const actionMaster = {
     getDataKenis,
@@ -137,6 +155,7 @@ const getDataJenisPembayaran = () => {
     getDataCustomer,
 
     // Ade
-    getDataTracking
+    getDataTracking,
+    getDataOrders
   }
   export default actionMaster

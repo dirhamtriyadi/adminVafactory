@@ -13,7 +13,9 @@ const Penjualan = lazy(() => import("./Penjualan/TransaksiPenjualan"));
 const DataCustomer = lazy(() => import("./DataCustomer"));
 const LihatPenjualan = lazy(() => import("./Penjualan/LihatPenjualan"));
 
+// Ade
 const Tracking = lazy(() => import("./Tracking"));
+const Orders = lazy(() => import("./Orders"));
 
 export {
   LaporanUangKas,
@@ -30,5 +32,7 @@ export {
   DataBahan,
   DataJenis,
 
+  // Ade
   Tracking,
+  Orders,
 };

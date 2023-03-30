@@ -60,6 +60,11 @@ const Menu = [
     path: "/tracking",
     icon: "fas fa-truck",
     title: "Tracking",
+  },
+  {
+    path: "/orders",
+    icon: "fas fa-archive",
+    title: "Orders",
   }
 
 ];
