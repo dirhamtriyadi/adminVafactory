@@ -1,4 +1,4 @@
-import { GET_DATA_BAHAN, GET_DATA_CASH, GET_DATA_CUSTOMER, GET_DATA_JENIS, GET_DATA_JENIS_PEMBAYARAN, GET_DATA_PRODUK } from "../actions/master_action";
+import { GET_DATA_BAHAN, GET_DATA_CASH, GET_DATA_CUSTOMER, GET_DATA_JENIS, GET_DATA_JENIS_PEMBAYARAN, GET_DATA_PRODUK, GET_DATA_TRACKING } from "../actions/master_action";
 
 
 const initialState = {
@@ -8,6 +8,9 @@ const initialState = {
   getDataProduk: [],
   getDataCash: [],
   getDataCustomer: [],
+
+  // Ade
+  getDataTracking: []
 
 };
 
@@ -42,6 +45,13 @@ const master = (state = initialState, actions) => {
       return {
         ...state,
         getDataJenisPembayaran: actions.payload.data,
+      };
+      
+    // Ade
+    case GET_DATA_TRACKING:
+      return {
+        ...state,
+        getDataTracking: actions.payload.data,
       };
     default:
       return state;
