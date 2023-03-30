@@ -1,4 +1,5 @@
 import { React, useEffect, masterActions, Tabel, utilityActions, useDispatch, selectorMaster, useSelector } from '../../../components';
+import { hapusDataOrders } from '../redux';
 
 const TabelOrders = () => {
     const dispatch = useDispatch();
@@ -76,7 +77,7 @@ const TabelOrders = () => {
                         </div>
                         <div className="col-6 text-left">
                         <button
-                            
+                            onClick={() => dispatch(hapusDataOrders(row))}
                             className="btn btn-danger ml-2"
                         >
                             <i className="fa fa-trash"></i>
