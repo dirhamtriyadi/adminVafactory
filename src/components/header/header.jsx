@@ -25,7 +25,7 @@ class Header extends React.Component {
 									<span className="icon-bar"></span>
 								</button>
 							)}
-							<Link to="/" className="navbar-brand"><span className="navbar-logo"></span> <b>Vafactorty</b></Link>
+							<Link to="/" className="navbar-brand"><span className="navbar-logo"></span> <b>Vafactory</b></Link>
 							
 							{pageHeaderMegaMenu && (
 								<button type="button" className="navbar-toggle pt-0 pb-0 mr-0" onClick={this.toggleMegaMenu}>
