@@ -1,10 +1,11 @@
-import { selectorUtility, React, useSelector, Field, HiidenFiled, ReanderField, useDispatch, reduxForm, connect, useEffect, useState, NumberOnly } from "../../../components"
+import { bindActionCreators } from "redux"
+import { selectorUtility, React, useSelector, Field, HiidenFiled, ReanderField, useDispatch, reduxForm, connect, useEffect, useState, NumberOnly, change } from "../../../components"
 import { simpanDataTracking } from "../redux"
 
 let FormDataOrders = ({pristine, submitting}) => {
-    const [qty, setQty] = useState(0)
-    const [price, setPrice] = useState(0)
-    const [total, setTotal] = useState(0)
+    const [qty, setQty] = useState()
+    const [price, setPrice] = useState()
+    const [total, setTotal] = useState()
 
     const dispatch = useDispatch()
 
@@ -14,9 +15,14 @@ let FormDataOrders = ({pristine, submitting}) => {
     useEffect(() => {
         setTotal(qty * price)
     }, [qty, price])
-
+    
     useEffect(() => {
-        console.log(total);
+        if(!isEdit){
+            dispatch(change('FormDataOrders', 'total', total))
+        }
+        if (total) {
+            dispatch(change('FormDataOrders', 'total', total))
+        }
     }, [total])
 
     useEffect(() => {
@@ -75,6 +81,7 @@ let FormDataOrders = ({pristine, submitting}) => {
                 label="Jumlah"
                 placeholder="Masukan Jumlah"
                 onChange={(e) => setQty(e.target.value)}
+                value={qty}
                 normalize={NumberOnly}
             />
         </div>
@@ -86,6 +93,7 @@ let FormDataOrders = ({pristine, submitting}) => {
                 label="Harga"
                 placeholder="Masukan Harga"
                 onChange={(e) => setPrice(e.target.value)}
+                value={price}
                 normalize={NumberOnly}
             />
         </div>
@@ -97,7 +105,6 @@ let FormDataOrders = ({pristine, submitting}) => {
                 type="text"
                 label="Total Harga"
                 placeholder="Masukan Total Harga"
-                normalize={total}
             />
         </div>
         <div className="col-12">
