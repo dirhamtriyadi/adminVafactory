@@ -1,4 +1,3 @@
-import { bindActionCreators } from "redux"
 import { selectorUtility, React, useSelector, Field, HiidenFiled, ReanderField, useDispatch, reduxForm, connect, useEffect, useState, NumberOnly, change } from "../../../components"
 import { simpanDataTracking } from "../redux"
 
