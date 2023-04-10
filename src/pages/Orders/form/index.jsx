@@ -1,28 +1,19 @@
-import { selectorUtility, React, useSelector, Field, HiidenFiled, ReanderField, useDispatch, reduxForm, connect, useEffect, useState, NumberOnly, change } from "../../../components"
-import { simpanDataTracking } from "../redux"
+import { selectorUtility, React, useSelector, Field, HiidenFiled, ReanderField, useDispatch, reduxForm, connect, useEffect, useState, NumberOnly, change, selectorMaster, ReanderSelect, masterActions, formValueSelector } from "../../../components"
+import { cariNamaCustomer, cariNamaPrintType, hitungTotal, simpanDataTracking } from "../redux"
 
 let FormDataOrders = ({pristine, submitting}) => {
-    const [qty, setQty] = useState()
-    const [price, setPrice] = useState()
-    const [total, setTotal] = useState()
 
     const dispatch = useDispatch()
+    let dataCustomer = useSelector(selectorMaster.getDataCustomer || [])
+    let dataPrintType = useSelector(selectorMaster.getDataKenis || [])
+
+    useEffect(() => {
+        dispatch(masterActions.getDataCustomer());
+        dispatch(masterActions.getDataKenis());
+    }, [dispatch]);
 
     const isEdit = useSelector(selectorUtility.isEdit)
     const isLoading = useSelector(selectorUtility.isLoading)
-
-    useEffect(() => {
-        setTotal(qty * price)
-    }, [qty, price])
-    
-    useEffect(() => {
-        if(!isEdit){
-            dispatch(change('FormDataOrders', 'total', total))
-        }
-        if (total) {
-            dispatch(change('FormDataOrders', 'total', total))
-        }
-    }, [total])
 
     useEffect(() => {
         document.getElementById('name').focus()
@@ -41,22 +32,31 @@ let FormDataOrders = ({pristine, submitting}) => {
                 />
             </>
         ) : null}
-        <div className="col-12">
             <Field
-                name="user"
-                component={ReanderField}
-                type="text"
-                label="Nama Penginput"
-                placeholder="Masukan Nama Penginput"
+                name="user_id"
+                component={HiidenFiled}
+                // type="hidden"
+                label="user"
+                value={localStorage.getItem('userdata.id')}
                 readOnly={isEdit}
-
             />
-        </div>
         <div className="col-12">
             <Field
-                name="customer"
-                component={ReanderField}
+                name="customer_id"
+                component={ReanderSelect}
+                options={
+                    dataCustomer.length === 0
+                        ? []
+                        : dataCustomer[0].map((list) => {
+                            let row = {
+                                value: list.id,
+                                name: list.name,
+                            };
+                            return row;
+                        })
+                    }
                 type="text"
+                onChange={(e) => dispatch(cariNamaCustomer(e))}
                 label="Nama Customer"
                 placeholder="Masukan Nama Customer"
                 readOnly={isEdit}
@@ -64,11 +64,23 @@ let FormDataOrders = ({pristine, submitting}) => {
         </div>
         <div className="col-12">
             <Field
-                name="print_type"
-                component={ReanderField}
+                name="print_type_id"
+                component={ReanderSelect}
+                options={
+                    dataPrintType.length === 0
+                        ? []
+                        : dataPrintType[0].map((list) => {
+                            let row = {
+                            value: list.id,
+                            name: list.name,
+                            };
+                            return row;
+                        })
+                    }
                 type="text"
-                label="Jenis Print"
-                placeholder="Masukan Jenis Print"
+                onChange={(e) => dispatch(cariNamaPrintType(e))}
+                label="Nama Type Print"
+                placeholder="Masukan Type Print"
                 readOnly={isEdit}
             />
         </div>
@@ -77,10 +89,10 @@ let FormDataOrders = ({pristine, submitting}) => {
                 name="qty"
                 component={ReanderField}
                 type="text"
-                label="Jumlah"
-                placeholder="Masukan Jumlah"
-                onChange={(e) => setQty(e.target.value)}
-                value={qty}
+                label="Qty"
+                placeholder="Masukan Qty"
+                onChange={(e) => dispatch(hitungTotal(e.target.value))}
+                // value={qty}
                 normalize={NumberOnly}
             />
         </div>
@@ -91,8 +103,6 @@ let FormDataOrders = ({pristine, submitting}) => {
                 type="text"
                 label="Harga"
                 placeholder="Masukan Harga"
-                onChange={(e) => setPrice(e.target.value)}
-                value={price}
                 normalize={NumberOnly}
             />
         </div>
@@ -104,6 +114,24 @@ let FormDataOrders = ({pristine, submitting}) => {
                 type="text"
                 label="Total Harga"
                 placeholder="Masukan Total Harga"
+            />
+        </div>
+        <div className="col-12">
+            <Field
+                name="discount"
+                component={ReanderField}
+                type="text"
+                label="Diskon"
+                placeholder="Masukan Diskon"
+            />
+        </div>
+        <div className="col-12">
+            <Field
+                name="subtotal"
+                component={ReanderField}
+                type="text"
+                label="Sub Total"
+                placeholder="Masukan Sub Total"
             />
         </div>
         <div className="col-12">
@@ -125,6 +153,15 @@ let FormDataOrders = ({pristine, submitting}) => {
                 placeholder="Masukan Nama Deskripsi"
             />
         </div>
+        <div className="col-12">
+            <Field
+                name="order_date"
+                component={ReanderField}
+                type="date"
+                label="Tanggal Order"
+                placeholder="Masukan Tanggal Order"
+            />
+        </div>
         <div className="col-12 text-rig">
             <button className="btn btn-primary" type="button" onClick={() => dispatch(simpanDataTracking())} disabled={pristine || submitting || isLoading}>
                 {isLoading ? (
@@ -144,7 +181,6 @@ let FormDataOrders = ({pristine, submitting}) => {
 }
 
 const maptostate = (state) => {
-    console.log(state.utility.getDataEdit);
     if (state.utility.getDataEdit !== null) {
         return {
             initialValues: {
