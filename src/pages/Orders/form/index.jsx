@@ -201,6 +201,7 @@ const maptostate = (state) => {
                 subtotal: state.utility.getDataEdit.subtotal,
                 name: state.utility.getDataEdit.name,
                 description: state.utility.getDataEdit.description,
+                order_date: state.utility.getDataEdit.order_date,
             },
         }
     }
