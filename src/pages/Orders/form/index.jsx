@@ -183,13 +183,14 @@ let FormDataOrders = ({pristine, submitting}) => {
 }
 
 const maptostate = (state) => {
+    console.log(state.utility.getDataEdit.customer.name);
     if (state.utility.getDataEdit !== null) {
         return {
             initialValues: {
                 id: state.utility.getDataEdit.id,
-                user: state.utility.getDataEdit.user?.name,
-                customer: state.utility.getDataEdit.customer?.name,
-                print_type: state.utility.getDataEdit.print_type?.name,
+                user_id: state.utility.getDataEdit.user?.id,
+                customer_id: state.utility.getDataEdit.customer?.id,
+                print_type_id: state.utility.getDataEdit.print_type?.id,
                 qty: state.utility.getDataEdit.qty,
                 price: state.utility.getDataEdit.price,
                 total: state.utility.getDataEdit.total,
