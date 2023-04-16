@@ -85,7 +85,7 @@ let TabelLaporanUangKas = (props) => {
             name="tanggal_akhir"
             component={ReanderField}
             type="date"
-            label="Tanggal Samoai"
+            label="Tanggal Sampai"
             placeholder="Masukan Tanggal"
           />
         </div>
