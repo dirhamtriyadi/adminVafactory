@@ -1,9 +1,9 @@
-import { masterActions, Swal, deleteData, putDataParams, utilityActions, ToastNotification, reset, postData, change } from "../../../components" 
+import { masterActions, Swal, deleteData, putDataParams, utilityActions, ToastNotification, reset, postData, change, getItem } from "../../../components" 
 
 export const cariNamaCustomer = (e) => {
     return async (dispatch, getState) => {
-        const state = getState()
-        let datacustomer = state.master.getDataCustomer[0].find((cek) => cek.id === e)
+        // const state = getState()
+        // let datacustomer = state.master.getDataCustomer[0].find((cek) => cek.id === e)
         // dispatch(change("FormDataOrders", "id", datacustomer.id))
         // dispatch(change("FormDataOrders", "name", datacustomer.name))
         // dispatch(change("FormDataOrders", "phone", datacustomer.phone))
@@ -28,9 +28,22 @@ export const hitungTotal = (e) => {
         const qty = e
         const price = data.price
         const total = qty * price
-        console.log(qty, price, total);
-        console.log(e);
+        // console.log(qty, price, total);
+        // console.log(e);
         dispatch(change('FormDataOrders', 'total', total))
+    }
+}
+
+export const hitungSubTotal = (e) => {
+    return async (dispatch, getState) => {
+        const state = getState()
+        const data = state.form.FormDataOrders?.values
+        const discount = e
+        const total = data.total
+        const subTotal = total - discount
+        // console.log(discount, total, total);
+        // console.log(e);
+        dispatch(change('FormDataOrders', 'subtotal', subTotal))
     }
 }
 
@@ -40,18 +53,69 @@ export const simpanDataTracking = () => {
         const data = state.form.FormDataOrders?.values
         const isEdit = state.utility.isEdit
 
+        let hasil = {
+            id : data.id,
+            user_id : getItem('userdata').id,
+            customer_id : data.customer_id,
+            print_type_id : data.print_type_id,
+            qty : data.qty,
+            price : data.price,
+            total : data.total,
+            discount : data.discount,
+            subtotal : data.subtotal,
+            name : data.name,
+            description : data.description,
+            order_date : data.order_date,
+        }
+
         dispatch(utilityActions.setLoading(true))
 
         isEdit
-            ? putDataParams("orders/" + data.id, data)
+            ? putDataParams("orders/" + data.id, hasil)
                 .then((res) => {
                     dispatch(utilityActions.setLoading(false))
+                    if (res.data?.user_id?.[0]) {
+                        ToastNotification("info", res.data?.user_id?.[0])
+                        return false
+                    }
+                    if (res.data?.customer_id?.[0]) {
+                        ToastNotification("info", res.data?.customer_id?.[0])
+                        return false
+                    }
+                    if (res.data?.print_type_id?.[0]) {
+                        ToastNotification("info", res.data?.print_type_id?.[0])
+                        return false
+                    }
+                    if (res.data?.qty?.[0]) {
+                        ToastNotification("info", res.data?.qty?.[0])
+                        return false
+                    }
+                    if (res.data?.price?.[0]) {
+                        ToastNotification("info", res.data?.price?.[0])
+                        return false
+                    }
+                    if (res.data?.total?.[0]) {
+                        ToastNotification("info", res.data?.total?.[0])
+                        return false
+                    }
+                    if (res.data?.discount?.[0]) {
+                        ToastNotification("info", res.data?.discount?.[0])
+                        return false
+                    }
+                    if (res.data?.subtotal?.[0]) {
+                        ToastNotification("info", res.data?.subtotal?.[0])
+                        return false
+                    }
                     if (res.data?.name?.[0]) {
                         ToastNotification("info", res.data?.name?.[0])
                         return false
                     }
                     if (res.data?.description?.[0]) {
                         ToastNotification("info", res.data?.description?.[0])
+                        return false
+                    }
+                    if (res.data?.order_date?.[0]) {
+                        ToastNotification("info", res.data?.order_date?.[0])
                         return false
                     }
 
@@ -64,16 +128,51 @@ export const simpanDataTracking = () => {
                     ToastNotification("info", "Edit data tracking gagal, silahkan coba lagi !!!")
                     dispatch(utilityActions.setLoading(false))
                 })
-            : postData("orders", data)
+            : postData("orders", hasil)
                 .then((res) => {
-                    console.log(res);
                     dispatch(utilityActions.setLoading(false))
+                    if (res.data?.user_id?.[0]) {
+                        ToastNotification("info", res.data?.user_id?.[0])
+                        return false
+                    }
+                    if (res.data?.customer_id?.[0]) {
+                        ToastNotification("info", res.data?.customer_id?.[0])
+                        return false
+                    }
+                    if (res.data?.print_type_id?.[0]) {
+                        ToastNotification("info", res.data?.print_type_id?.[0])
+                        return false
+                    }
+                    if (res.data?.qty?.[0]) {
+                        ToastNotification("info", res.data?.qty?.[0])
+                        return false
+                    }
+                    if (res.data?.price?.[0]) {
+                        ToastNotification("info", res.data?.price?.[0])
+                        return false
+                    }
+                    if (res.data?.total?.[0]) {
+                        ToastNotification("info", res.data?.total?.[0])
+                        return false
+                    }
+                    if (res.data?.discount?.[0]) {
+                        ToastNotification("info", res.data?.discount?.[0])
+                        return false
+                    }
+                    if (res.data?.subtotal?.[0]) {
+                        ToastNotification("info", res.data?.subtotal?.[0])
+                        return false
+                    }
                     if (res.data?.name?.[0]) {
                         ToastNotification("info", res.data?.name?.[0])
                         return false
                     }
                     if (res.data?.description?.[0]) {
                         ToastNotification("info", res.data?.description?.[0])
+                        return false
+                    }
+                    if (res.data?.order_date?.[0]) {
+                        ToastNotification("info", res.data?.order_date?.[0])
                         return false
                     }
 

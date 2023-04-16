@@ -1,5 +1,5 @@
-import { selectorUtility, React, useSelector, Field, HiidenFiled, ReanderField, useDispatch, reduxForm, connect, useEffect, useState, NumberOnly, change, selectorMaster, ReanderSelect, masterActions, formValueSelector } from "../../../components"
-import { cariNamaCustomer, cariNamaPrintType, hitungTotal, simpanDataTracking } from "../redux"
+import { selectorUtility, React, useSelector, Field, HiidenFiled, ReanderField, useDispatch, reduxForm, connect, useEffect, NumberOnly, selectorMaster, ReanderSelect, masterActions } from "../../../components"
+import { cariNamaCustomer, cariNamaPrintType, hitungSubTotal, hitungTotal, simpanDataTracking } from "../redux"
 
 let FormDataOrders = ({pristine, submitting}) => {
 
@@ -35,7 +35,7 @@ let FormDataOrders = ({pristine, submitting}) => {
             <Field
                 name="user_id"
                 component={HiidenFiled}
-                // type="hidden"
+                type="hidden"
                 label="user"
                 value={localStorage.getItem('userdata.id')}
                 readOnly={isEdit}
@@ -92,7 +92,6 @@ let FormDataOrders = ({pristine, submitting}) => {
                 label="Qty"
                 placeholder="Masukan Qty"
                 onChange={(e) => dispatch(hitungTotal(e.target.value))}
-                // value={qty}
                 normalize={NumberOnly}
             />
         </div>
@@ -104,6 +103,7 @@ let FormDataOrders = ({pristine, submitting}) => {
                 label="Harga"
                 placeholder="Masukan Harga"
                 normalize={NumberOnly}
+                readOnly={true}
             />
         </div>
         <div className="col-12">
@@ -122,6 +122,7 @@ let FormDataOrders = ({pristine, submitting}) => {
                 component={ReanderField}
                 type="text"
                 label="Diskon"
+                onChange={(e) => dispatch(hitungSubTotal(e.target.value))}
                 placeholder="Masukan Diskon"
             />
         </div>
@@ -132,6 +133,7 @@ let FormDataOrders = ({pristine, submitting}) => {
                 type="text"
                 label="Sub Total"
                 placeholder="Masukan Sub Total"
+                readOnly={true}
             />
         </div>
         <div className="col-12">
@@ -149,7 +151,7 @@ let FormDataOrders = ({pristine, submitting}) => {
                 name="description"
                 component={ReanderField}
                 type="text"
-                label="Nama Deskripsi"
+                label="Deskripsi"
                 placeholder="Masukan Nama Deskripsi"
             />
         </div>
