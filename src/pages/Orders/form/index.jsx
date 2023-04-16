@@ -124,9 +124,9 @@ let FormDataOrders = ({pristine, submitting}) => {
                 component={ReanderField}
                 type="text"
                 label="Diskon"
+                {...currencyMask}
                 onChange={(e) => dispatch(hitungSubTotal(e.target.value))}
                 placeholder="Masukan Diskon"
-                {...currencyMask}
             />
         </div>
         <div className="col-12">
@@ -197,6 +197,8 @@ const maptostate = (state) => {
                 qty: state.utility.getDataEdit.qty,
                 price: state.utility.getDataEdit.price,
                 total: state.utility.getDataEdit.total,
+                discount: state.utility.getDataEdit.discount,
+                subtotal: state.utility.getDataEdit.subtotal,
                 name: state.utility.getDataEdit.name,
                 description: state.utility.getDataEdit.description,
             },

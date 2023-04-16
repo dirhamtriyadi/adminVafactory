@@ -18,6 +18,7 @@ export const cariNamaPrintType = (e) => {
         dispatch(change("FormDataOrders", "price", dataPrintType.price))
         dispatch(change('FormDataOrders', 'qty', 1))
         dispatch(change('FormDataOrders', 'total', dataPrintType.price))
+        dispatch(change('FormDataOrders', 'subtotal', dataPrintType.price))
     }
 }
 
@@ -38,7 +39,7 @@ export const hitungSubTotal = (e) => {
     return async (dispatch, getState) => {
         const state = getState()
         const data = state.form.FormDataOrders?.values
-        const discount = e
+        const discount = e.replace(/[^0-9]/g, '')
         const total = data.total
         const subTotal = total - discount
         // console.log(discount, total, total);
