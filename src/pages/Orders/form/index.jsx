@@ -183,7 +183,6 @@ let FormDataOrders = ({pristine, submitting}) => {
 }
 
 const maptostate = (state) => {
-    console.log(state.utility.getDataEdit.customer.name);
     if (state.utility.getDataEdit !== null) {
         return {
             initialValues: {
