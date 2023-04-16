@@ -58,6 +58,7 @@ const TabelOrders = () => {
         {
             dataField: "order_date",
             text: "Tanggal Order",
+            sort: true
         },
         {
             dataField: "action",
