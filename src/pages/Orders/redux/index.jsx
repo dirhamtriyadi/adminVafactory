@@ -120,7 +120,7 @@ export const simpanDataTracking = () => {
                         return false
                     }
 
-                    dispatch(masterActions.getDataTracking())
+                    dispatch(masterActions.getDataOrders())
                     dispatch(utilityActions.hideModal())
                     dispatch(reset("FormDataOrders"))
                     ToastNotification("success", "Berhasil mengedit data tracking")
