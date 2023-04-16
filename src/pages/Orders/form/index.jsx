@@ -1,4 +1,4 @@
-import { selectorUtility, React, useSelector, Field, HiidenFiled, ReanderField, useDispatch, reduxForm, connect, useEffect, NumberOnly, selectorMaster, ReanderSelect, masterActions } from "../../../components"
+import { selectorUtility, React, useSelector, Field, HiidenFiled, ReanderField, useDispatch, reduxForm, connect, useEffect, NumberOnly, selectorMaster, ReanderSelect, masterActions, currencyMask } from "../../../components"
 import { cariNamaCustomer, cariNamaPrintType, hitungSubTotal, hitungTotal, simpanDataTracking } from "../redux"
 
 let FormDataOrders = ({pristine, submitting}) => {
@@ -104,6 +104,7 @@ let FormDataOrders = ({pristine, submitting}) => {
                 placeholder="Masukan Harga"
                 normalize={NumberOnly}
                 readOnly={true}
+                {...currencyMask}
             />
         </div>
         <div className="col-12">
@@ -114,6 +115,7 @@ let FormDataOrders = ({pristine, submitting}) => {
                 type="text"
                 label="Total Harga"
                 placeholder="Masukan Total Harga"
+                {...currencyMask}
             />
         </div>
         <div className="col-12">
@@ -124,6 +126,7 @@ let FormDataOrders = ({pristine, submitting}) => {
                 label="Diskon"
                 onChange={(e) => dispatch(hitungSubTotal(e.target.value))}
                 placeholder="Masukan Diskon"
+                {...currencyMask}
             />
         </div>
         <div className="col-12">
@@ -134,6 +137,7 @@ let FormDataOrders = ({pristine, submitting}) => {
                 label="Sub Total"
                 placeholder="Masukan Sub Total"
                 readOnly={true}
+                {...currencyMask}
             />
         </div>
         <div className="col-12">
