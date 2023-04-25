@@ -12,6 +12,11 @@ const TabelOrders = () => {
 
     const columns = [
         {
+            dataField: "order_number",
+            text: "NO Order",
+            sort: true
+        },
+        {
             dataField: "user.name",
             text: "Nama Penginput",
             sort: true
@@ -95,8 +100,27 @@ const TabelOrders = () => {
         dispatch(utilityActions.isEdit(isEdit ? true : false))
     }
 
+    let hasil = data.map((list) => {
+        let row = {
+            id: list.id,
+            order_number: list.order_number,
+            user: list.user,
+            customer: list.customer,
+            print_type: list.print_type,
+            qty: list.qty,
+            price: list.price,
+            total: list.total,
+            discount: list.discount,
+            subtotal: list.subtotal,
+            name: list.name,
+            description: list.description,
+            order_date: list.order_date,
+        }
+        return row
+    })
+
   return (
-    <Tabel handleClick={() => showModal(false)} keyField="id" tambahData={true} columns={columns} data={data[0] || []} />
+    <Tabel handleClick={() => showModal(false)} keyField="id" tambahData={true} columns={columns} data={hasil || []} />
   )
 }
 

@@ -1,4 +1,4 @@
-import { masterActions, Swal, deleteData, putDataParams, utilityActions, ToastNotification, reset, postData, change, getItem } from "../../../components" 
+import { masterActions, Swal, deleteData, putDataParams, utilityActions, ToastNotification, reset, postData, change, getItem, getToday } from "../../../components" 
 
 export const cariNamaCustomer = (e) => {
     return async (dispatch, getState) => {
@@ -54,8 +54,36 @@ export const simpanDataTracking = () => {
         const data = state.form.FormDataOrders?.values
         const isEdit = state.utility.isEdit
 
+        let dataorder = state.master.getDataOrders.pop();
+
+        let nomerGenerate = "";
+        // if (dataorder === undefined) {
+        //     nomerGenerate = "TR" + getToday().replaceAll("-", 0) + "0001";
+        // } else {
+        //     let nomor = dataorder.order_number;
+        //     let nomorUrut = parseInt(nomor.substring(10, 14)) + 1;
+        //     let nomorUrutString = nomorUrut.toString();
+        //     let nomorUrutStringLeng = nomorUrutString.length;
+        //     let nol = "";
+        //     for (let i = 0; i < 4 - nomorUrutStringLeng; i++) {
+        //         nol = nol + "0";
+        //     }
+        //     nomerGenerate = "TR" + getToday().replaceAll("-", 0) + nol + nomorUrutString;
+        // }
+
+        if (dataorder === undefined) {
+            nomerGenerate = "TR" + getToday().replaceAll("-", 0) + "0001";
+          } else {
+            let nomor = dataorder.order_number;
+            let str = nomor.substring(0, nomor.length - 1);
+            let angkaTerakhir = nomor.substr(nomor.length - 1);
+            let calculasi = parseInt(angkaTerakhir) + parseInt(1);
+            nomerGenerate = `${str}` + calculasi;
+          }
+
         let hasil = {
             id : data.id,
+            order_number : nomerGenerate,
             user_id : getItem('userdata').id,
             customer_id : data.customer_id,
             print_type_id : data.print_type_id,

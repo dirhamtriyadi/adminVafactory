@@ -80,9 +80,10 @@ const TabelPenjualan = (props) => {
       detail_barang : list.transactionDetails
 
     };
-
+    
     return row;
   });
+  console.log(hasil);
 
   return <Tabel keyField="transaction_number" data={hasil} columns={columns} />;
 };
