@@ -3,8 +3,8 @@ import { selectorUtility, React, useSelector, Field, HiidenFiled, ReanderField, 
 let FormDataOrderTransaction = ({pristine, submitting}) => {
     const dispatch = useDispatch()
 
-    let getDataOrderTransaction = useSelector(selectorMaster.getDataOrderTransaction || [])
-    let hasilDataOrderTransaction = getDataOrderTransaction.map((list) => {
+    let getDataOrders = useSelector(selectorMaster.getDataOrders || [])
+    let hasilDataOrderTransaction = getDataOrders.map((list) => {
         let row = {
             id: list.id,
             order_number: list.order_number,
