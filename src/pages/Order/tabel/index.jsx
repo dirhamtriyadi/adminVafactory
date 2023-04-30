@@ -38,18 +38,30 @@ const TabelOrders = () => {
         {
             dataField: "price",
             text: "Harga",
+            formatter: (cell) => {
+                return <div>{Number(cell || 0)?.toLocaleString("kr-KO") || 0}</div>;
+            },
         },
         {
             dataField: "total",
             text: "Total Harga",
+            formatter: (cell) => {
+                return <div>{Number(cell || 0)?.toLocaleString("kr-KO") || 0}</div>;
+            },
         },
         {
             dataField: "discount",
             text: "Diskon",
+            formatter: (cell) => {
+                return <div>{Number(cell || 0)?.toLocaleString("kr-KO") || 0}</div>;
+            },
         },
         {
             dataField: "subtotal",
             text: "Subtotal",
+            formatter: (cell) => {
+                return <div>{Number(cell || 0)?.toLocaleString("kr-KO") || 0}</div>;
+            },
         },
         {
             dataField: "name",
