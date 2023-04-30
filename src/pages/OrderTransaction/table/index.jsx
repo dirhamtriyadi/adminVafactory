@@ -59,7 +59,7 @@ const TabelOrderTransaction = () => {
   //   // };
   //   // return row;
   // });
-  console.log(data);
+  // console.log(data);
 
   const hasil = data.map((list) => {
     let row = {
