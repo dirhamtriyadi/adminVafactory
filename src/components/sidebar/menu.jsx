@@ -65,6 +65,11 @@ const Menu = [
     path: "/orders",
     icon: "fas fa-archive",
     title: "Orders",
+  },
+  {
+    path: "/order-transaction",
+    icon: "fas fa-money-bill-alt",
+    title: "Order Transaction",
   }
 
 ];

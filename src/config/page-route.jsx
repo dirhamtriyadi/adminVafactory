@@ -1,6 +1,6 @@
 import { React } from "../components/helpers";
 
-import { DashboardV1, DataBahan, DataJenis, Login, DataUsers, HakAkses,  UangKas, JenisPembayaran, DataBarang, Penjualan, DataCustomer, LaporanUangKas, Tracking, Orders } from "../pages";
+import { DashboardV1, DataBahan, DataJenis, Login, DataUsers, HakAkses,  UangKas, JenisPembayaran, DataBarang, Penjualan, DataCustomer, LaporanUangKas, Tracking, Orders, OrderTransaction } from "../pages";
 import LihatPenjualan from "../pages/Penjualan/LihatPenjualan";
 
 const routes = [
@@ -117,6 +117,14 @@ const routes = [
     exact: true,
     title: "Tracking",
     component: () => <Orders />,
+  },
+
+  // Order Transaction
+  {
+    path: "/order-transaction",
+    exact: true,
+    title: "Tracking",
+    component: () => <OrderTransaction />,
   }
 
 ];
