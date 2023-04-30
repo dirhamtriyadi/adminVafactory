@@ -151,7 +151,7 @@ const getDataJenisPembayaran = () => {
       getData("order-transactions")
         .then((res) => {
           dispatch({
-            type: GET_DATA_ORDERS,
+            type: GET_DATA_ORDER_TRANSACTION,
             payload: {
               data: res.data,
             },

@@ -3,8 +3,8 @@ import { selectorUtility, React, useSelector, Field, HiidenFiled, ReanderField, 
 let FormDataOrderTransaction = ({pristine, submitting}) => {
     const dispatch = useDispatch()
 
-    let dataOrders = useSelector(selectorMaster.getDataOrders || [])
-    let hasilDataOrders = dataOrders.map((list) => {
+    let getDataOrderTransaction = useSelector(selectorMaster.getDataOrderTransaction || [])
+    let hasilDataOrderTransaction = getDataOrderTransaction.map((list) => {
         let row = {
             id: list.id,
             order_number: list.order_number,
@@ -51,9 +51,9 @@ let FormDataOrderTransaction = ({pristine, submitting}) => {
                 name="order_id"
                 component={ReanderSelect}
                 options={
-                    hasilDataOrders.length === 0
+                    hasilDataOrderTransaction.length === 0
                     ? []
-                    : hasilDataOrders.map((list) => {
+                    : hasilDataOrderTransaction.map((list) => {
                         let row = {
                             value: list.id,
                             name: list.name,
@@ -131,17 +131,10 @@ const maptostate = (state) => {
         return {
             initialValues: {
                 id: state.utility.getDataEdit.id,
-                user_id: state.utility.getDataEdit.user?.id,
-                customer_id: state.utility.getDataEdit.customer?.id,
-                print_type_id: state.utility.getDataEdit.print_type?.id,
-                qty: state.utility.getDataEdit.qty,
-                price: state.utility.getDataEdit.price,
-                total: state.utility.getDataEdit.total,
-                discount: state.utility.getDataEdit.discount,
-                subtotal: state.utility.getDataEdit.subtotal,
-                name: state.utility.getDataEdit.name,
-                description: state.utility.getDataEdit.description,
-                order_date: state.utility.getDataEdit.order_date,
+                order_id: state.utility.getDataEdit.order_id?.id,
+                payment_method_id: state.utility.getDataEdit.print_type?.id,
+                amount: state.utility.getDataEdit.amount,
+                date: state.utility.getDataEdit.date,
             },
         }
     }

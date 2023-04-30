@@ -10,6 +10,7 @@ const OrderTransaction = () => {
   return (
     <PanelContent menu="Order Transaction">
       <TabelOrderTransaction />
+      {/* {!isEdit ? <TabelOrderTransaction /> : null } */}
       <ModalGlobal
         size="P"
         title={isEdit ? "Edit Data Order Transaction" : "Tambah Data Order Transaction"}

@@ -8,7 +8,7 @@ const getDataCustomer = (state) => state.master.getDataCustomer;
 // Ade
 const getDataTracking = (state) => state.master.getDataTracking;
 const getDataOrders = (state) => state.master.getDataOrders;
-const getDataOrderTransaction = (state) => state.master.getDataOrders;
+const getDataOrderTransaction = (state) => state.master.getDataOrderTransaction;
 
 const selectorMaster = {
   getDataCustomer,

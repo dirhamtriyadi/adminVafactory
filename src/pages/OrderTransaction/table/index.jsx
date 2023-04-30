@@ -38,28 +38,39 @@ const TabelOrderTransaction = () => {
     dispatch(utilityActions.isEdit(isEdit ? true : false))
   }
 
+  // const hasil = data.map((list) => {
+  //   const hasil = list.map((list) => {
+  //     let row = {
+  //       id: list.id,
+  //       order_id: list.order.order_number,
+  //       payment_method_id: list.payment_method.name,
+  //       amount: list.amount,
+  //       date: list.date,
+  //     };
+  //     return row;
+  //   });
+  //   return hasil;
+  //   // let row = {
+  //   //   id: list.id,
+  //   //   order_id: list.order_number,
+  //   //   payment_method_id: list.name,
+  //   //   amount: list.amount,
+  //   //   date: list.date,
+  //   // };
+  //   // return row;
+  // });
+  console.log(data);
+
   const hasil = data.map((list) => {
-    const hasil = list.map((list) => {
-      let row = {
-        id: list.id,
-        order_id: list.order.order_number,
-        payment_method_id: list.payment_method.name,
-        amount: list.amount,
-        date: list.date,
-      };
-      return row;
-    });
-    return hasil;
-    // let row = {
-    //   id: list.id,
-    //   order_id: list.order_number,
-    //   payment_method_id: list.name,
-    //   amount: list.amount,
-    //   date: list.date,
-    // };
-    // return row;
-  });
-  // console.log(hasil);
+    let row = {
+      id: list.id,
+      order_id: list.order.order_number,
+      payment_method_id: list.payment_method.name,
+      amount: list.amount,
+      date: list.date,
+    };
+    return row;
+  })
 
   return (
     <Tabel
@@ -67,7 +78,7 @@ const TabelOrderTransaction = () => {
       keyField="id"
       tambahData={true}
       columns={columns}
-      data={hasil[0] || []}
+      data={hasil || []}
     />
   );
 };

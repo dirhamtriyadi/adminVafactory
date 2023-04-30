@@ -63,7 +63,7 @@ const master = (state = initialState, actions) => {
       case GET_DATA_ORDER_TRANSACTION:
       return {
         ...state,
-        getDataOrders: actions.payload.data,
+        getDataOrderTransaction: actions.payload.data,
       };
 
     default:
