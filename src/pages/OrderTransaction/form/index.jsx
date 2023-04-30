@@ -56,7 +56,7 @@ let FormDataOrderTransaction = ({pristine, submitting}) => {
                     : hasilDataOrderTransaction.map((list) => {
                         let row = {
                             value: list.id,
-                            name: list.name,
+                            name: list.name + ' - ' + list.order_number,
                         };
                         return row;
                     })
