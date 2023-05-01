@@ -92,7 +92,7 @@ export const hapusDataOrderTransaction = (row) => {
           deleteData("order-transactions/" + row.id)
             .then((res) => {
               ToastNotification("success", "Data berhasil dihapus");
-              dispatch(masterActions.getDataCustomer());
+              dispatch(masterActions.getDataOrderTransaction());
             })
             .catch((err) => {
               ToastNotification(
