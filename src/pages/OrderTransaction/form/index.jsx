@@ -1,4 +1,5 @@
 import { selectorUtility, React, useSelector, Field, HiidenFiled, ReanderField, useDispatch, reduxForm, connect, useEffect, NumberOnly, selectorMaster, ReanderSelect, masterActions, currencyMask } from "../../../components"
+import { simpanDataOrderTransaction } from "../redux"
 
 let FormDataOrderTransaction = ({pristine, submitting}) => {
     const dispatch = useDispatch()
@@ -109,7 +110,7 @@ let FormDataOrderTransaction = ({pristine, submitting}) => {
             />
         </div>
         <div className="col-12 text-rig">
-            {/* <button className="btn btn-primary" type="button" onClick={() => dispatch(simpanDataTracking())} disabled={pristine || submitting || isLoading}>
+            <button className="btn btn-primary" type="button" onClick={() => dispatch(simpanDataOrderTransaction())} disabled={pristine || submitting || isLoading}>
                 {isLoading ? (
                     <>
                         <i className="fa fa-spinner fa-spin mr-2" />
@@ -120,7 +121,7 @@ let FormDataOrderTransaction = ({pristine, submitting}) => {
                         Simpan
                     </>
                 )}
-            </button> */}
+            </button>
         </div>
     </div>
   )
@@ -128,11 +129,12 @@ let FormDataOrderTransaction = ({pristine, submitting}) => {
 
 const maptostate = (state) => {
     if (state.utility.getDataEdit !== null) {
+        console.log(state.utility.getDataEdit);
         return {
             initialValues: {
                 id: state.utility.getDataEdit.id,
-                order_id: state.utility.getDataEdit.order_id?.id,
-                payment_method_id: state.utility.getDataEdit.print_type?.id,
+                order_id: state.utility.getDataEdit.order?.id,
+                payment_method_id: state.utility.getDataEdit.payment_method?.id,
                 amount: state.utility.getDataEdit.amount,
                 date: state.utility.getDataEdit.date,
             },
