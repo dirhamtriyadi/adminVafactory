@@ -92,7 +92,7 @@ let FormDataCustomer = ({pristine, submitting}) => {
   );
 };
 const maptostate = (state) => {
-  // console.log(state.utility.getDataEdit);
+  console.log(state.utility.getDataEdit);
     if (state.utility.getDataEdit !== null) {
       return {
         initialValues: {
