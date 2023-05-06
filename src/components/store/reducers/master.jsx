@@ -1,5 +1,4 @@
 import {
-    GET_DATA_BAHAN,
     GET_DATA_CASH,
     GET_DATA_CUSTOMER,
     GET_DATA_JENIS,

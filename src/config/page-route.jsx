@@ -2,7 +2,6 @@ import { React } from "../components/helpers";
 
 import {
     DashboardV1,
-    DataBahan,
     DataJenis,
     Login,
     DataUsers,
