@@ -47,6 +47,11 @@ export const ubahHarga = (e) => {
         // console.log(e);
         dispatch(change("FormDataOrders", "total", total));
         dispatch(change("FormDataOrders", "subtotal", total));
+        if (data.discount) {
+            const discount = data.discount;
+            const hehe = total - discount;
+            dispatch(change("FormDataOrders", "subtotal", hehe));
+        }
     };
 };
 
@@ -61,6 +66,11 @@ export const ubahQty = (e) => {
         // console.log(e);
         dispatch(change("FormDataOrders", "total", total));
         dispatch(change("FormDataOrders", "subtotal", total));
+        if (data.discount) {
+            const discount = data.discount;
+            const hehe = total - discount;
+            dispatch(change("FormDataOrders", "subtotal", hehe));
+        }
     };
 };
 

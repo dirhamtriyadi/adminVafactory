@@ -1,8 +1,8 @@
 import Axios from "axios";
 import { getItem,convertBase64,dataURLtoFile,resizeFile } from "../components";
 import firebase from "./firebase.jsx";
-// const server = process.env.REACT_APP_BACKEND_URL;
-const server = 'http://localhost:8000/api/';
+const server = process.env.REACT_APP_BACKEND_URL;
+// const server = 'http://localhost:8000/api/';
 export function postImage(file, name) {
   return new Promise((resolve, reject) => {
     const storage = firebase.storage();
