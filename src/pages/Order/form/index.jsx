@@ -169,8 +169,8 @@ let FormDataOrders = ({ pristine, submitting }) => {
                     name="name"
                     component={ReanderField}
                     type="text"
-                    label="Nama Orders"
-                    placeholder="Masukan Nama Orders"
+                    label="Nama Order"
+                    placeholder="Masukan Nama Order"
                 />
             </div>
             <div className="col-12">
@@ -179,7 +179,7 @@ let FormDataOrders = ({ pristine, submitting }) => {
                     component={ReanderField}
                     type="text"
                     label="Deskripsi"
-                    placeholder="Masukan Nama Deskripsi"
+                    placeholder="Masukan Deskripsi"
                 />
             </div>
             <div className="col-12">
