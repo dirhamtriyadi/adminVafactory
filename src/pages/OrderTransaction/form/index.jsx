@@ -102,11 +102,20 @@ let FormDataOrderTransaction = ({pristine, submitting}) => {
         </div>
         <div className="col-12">
             <Field
+                name="description"
+                component={ReanderField}
+                type="text"
+                label="Keterangan Pembayaran"
+                placeholder="Masukan Keterangan Pembayaran"
+            />
+        </div>
+        <div className="col-12">
+            <Field
                 name="date"
                 component={ReanderField}
                 type="date"
-                label="Tanggal Order"
-                placeholder="Masukan Tanggal Order"
+                label="Tanggal Transaksi"
+                placeholder="Masukan Tanggal Transaksi"
             />
         </div>
         <div className="col-12 text-rig">

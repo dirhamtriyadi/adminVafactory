@@ -30,6 +30,11 @@ const TabelOrderTransaction = () => {
       },
     },
     {
+      dataField: "description",
+      text: "Keterangan",
+      sort: true,
+    },
+    {
       dataField: "date",
       text: "Tanggal",
       sort: true,
