@@ -100,6 +100,7 @@ const TabelOrderTransaction = () => {
       order: list.order,
       payment_method: list.payment_method,
       amount: list.amount,
+      description: list.description,
       date: list.date,
     };
     return row;
