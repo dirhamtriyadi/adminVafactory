@@ -10,6 +10,7 @@ export const GET_DATA_CUSTOMER = "GET_DATA_CUSTOMER";
 export const GET_DATA_TRACKING = "GET_DATA_TRACKING";
 export const GET_DATA_ORDERS = "GET_DATA_ORDERS";
 export const GET_DATA_ORDER_TRANSACTION = "GET_DATA_ORDER_TRANSACTION";
+export const GET_DATA_ORDER_TRACKING = "GET_DATA_ORDER_TRACKING";
 
 const getDataCustomer = () => {
     return (dispatch) => {
@@ -144,6 +145,23 @@ const getDataOrderTransaction = () => {
     };
 };
 
+const getDataOrderTracking = () => {
+    return (dispatch) => {
+        getData("order-trackings")
+            .then((res) => {
+                dispatch({
+                    type: GET_DATA_ORDER_TRACKING,
+                    payload: {
+                        data: res.data,
+                    },
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+};
+
 const actionMaster = {
     getDataKenis,
     getDataJenisPembayaran,
@@ -155,5 +173,6 @@ const actionMaster = {
     getDataTracking,
     getDataOrders,
     getDataOrderTransaction,
+    getDataOrderTracking,
 };
 export default actionMaster;

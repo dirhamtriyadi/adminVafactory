@@ -15,6 +15,7 @@ import {
     masterActions,
     currencyMask,
 } from "../../../components";
+import { simpanDataOrderTracking } from "../redux";
 
 let FormDataOrderTracking = ({ pristine, submitting }) => {
     const dispatch = useDispatch();
@@ -54,7 +55,7 @@ let FormDataOrderTracking = ({ pristine, submitting }) => {
                             : dataOrder.map((list) => {
                                   let data = {
                                       value: list.id,
-                                      name: list.order_number,
+                                      name: list.order_number + ' - ' + list.name,
                                   };
                                   return data;
                               })
@@ -118,22 +119,36 @@ let FormDataOrderTracking = ({ pristine, submitting }) => {
                 <button
                     className="btn btn-primary"
                     type="button"
-                    // onClick={() => dispatch(simpanDataTracking())}
+                    onClick={() => dispatch(simpanDataOrderTracking())}
                     disabled={pristine || submitting || isLoading}
                 >
-                    <>Simpan</>
-                    {/* {isLoading ? (
+                    {isLoading ? (
                         <>
                             <i className="fa fa-spinner fa-spin mr-2" />
                             Loading...
                         </>
                     ) : (
                         <>Simpan</>
-                    )} */}
+                    )}
                 </button>
             </div>
         </div>
     );
+};
+
+const maptostate = (state) => {
+    if(state.utility.getDataEdit !== null){
+        return {
+            initialValues: {
+                id: state.utility.getDataEdit.id,
+                order_id: state.utility.getDataEdit.order?.id,
+                tracking_id: state.utility.getDataEdit.tracking?.id,
+                description: state.utility.getDataEdit.description,
+                status: state.utility.getDataEdit.status,
+                date: state.utility.getDataEdit.date,
+            },
+        };
+    }
 };
 
 FormDataOrderTracking = reduxForm({
@@ -141,4 +156,4 @@ FormDataOrderTracking = reduxForm({
     enableReinitialize: true,
 })(FormDataOrderTracking)
 
-export default FormDataOrderTracking;
+export default connect(maptostate)(FormDataOrderTracking);

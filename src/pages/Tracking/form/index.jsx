@@ -42,7 +42,7 @@ let FormDataTracking = ({pristine, submitting}) => {
                 placeholder="Masukan Deskripsi"
             />
         </div>
-        <div className="col-12 text-rig">
+        <div className="col-12 text-right">
             <button className="btn btn-primary" type="button" onClick={() => dispatch(simpanDataTracking())} disabled={pristine || submitting || isLoading}>
                 {isLoading ? (
                     <>
