@@ -15,6 +15,7 @@ import {
     Tracking,
     Orders,
     OrderTransaction,
+    OrderTracking,
 } from "../pages";
 import LihatPenjualan from "../pages/Penjualan/LihatPenjualan";
 
@@ -120,7 +121,7 @@ const routes = [
     {
         path: "/orders",
         exact: true,
-        title: "Tracking",
+        title: "Orders",
         component: () => <Orders />,
     },
 
@@ -128,8 +129,16 @@ const routes = [
     {
         path: "/order-transaction",
         exact: true,
-        title: "Tracking",
+        title: "Order Transaction",
         component: () => <OrderTransaction />,
+    },
+
+    // Order Tracking
+    {
+        path: "/order-tracking",
+        exact: true,
+        title: "Order Tracking",
+        component: () => <OrderTracking />,
     },
 ];
 

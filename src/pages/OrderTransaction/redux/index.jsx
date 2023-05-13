@@ -24,6 +24,10 @@ export const simpanDataOrderTransaction = (data) => {
                         ToastNotification("info", res.data?.amount?.[0])
                         return false
                     }
+                    if (res.data?.description?.[0]) {
+                      ToastNotification("info", res.data?.description?.[0])
+                      return false
+                  }
                     if (res.data?.date?.[0]) {
                         ToastNotification("info", res.data?.date?.[0])
                         return false
@@ -52,6 +56,10 @@ export const simpanDataOrderTransaction = (data) => {
                         ToastNotification("info", res.data?.amount?.[0])
                         return false
                     }
+                    if (res.data?.description?.[0]) {
+                      ToastNotification("info", res.data?.description?.[0])
+                      return false
+                  }
                     if (res.data?.date?.[0]) {
                         ToastNotification("info", res.data?.date?.[0])
                         return false

@@ -1,7 +1,7 @@
 
 import { React ,PanelContent, ModalGlobal, useSelector, selectorUtility } from "../../components"
 import FormDataOrderTransaction from "./form"
-import TabelOrderTransaction from "./table"
+import TabelOrderTransaction from "./tabel"
 
 
 const OrderTransaction = () => {

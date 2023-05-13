@@ -13,7 +13,7 @@ const TabelOrderTransaction = () => {
   const columns = [
     {
       dataField: "order.order_number",
-      text: "No Order",
+      text: "NO Order",
       sort: true,
     },
     {
@@ -28,6 +28,11 @@ const TabelOrderTransaction = () => {
       formatter: (cell) => {
           return <div>{Number(cell || 0)?.toLocaleString("kr-KO") || 0}</div>;
       },
+    },
+    {
+      dataField: "description",
+      text: "Keterangan",
+      sort: true,
     },
     {
       dataField: "date",
@@ -95,6 +100,7 @@ const TabelOrderTransaction = () => {
       order: list.order,
       payment_method: list.payment_method,
       amount: list.amount,
+      description: list.description,
       date: list.date,
     };
     return row;

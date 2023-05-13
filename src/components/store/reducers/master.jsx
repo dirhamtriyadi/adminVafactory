@@ -7,6 +7,7 @@ import {
     GET_DATA_TRACKING,
     GET_DATA_ORDERS,
     GET_DATA_ORDER_TRANSACTION,
+    GET_DATA_ORDER_TRACKING,
 } from "../actions/master_action";
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
     getDataTracking: [],
     getDataOrders: [],
     getDataOrderTransaction: [],
+    getDataOrderTracking: [],
 };
 
 const master = (state = initialState, actions) => {
@@ -65,6 +67,11 @@ const master = (state = initialState, actions) => {
             return {
                 ...state,
                 getDataOrderTransaction: actions.payload.data,
+            };
+        case GET_DATA_ORDER_TRACKING:
+            return {
+                ...state,
+                getDataOrderTracking: actions.payload.data,
             };
 
         default:

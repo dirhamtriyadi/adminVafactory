@@ -8,6 +8,7 @@ const getDataCustomer = (state) => state.master.getDataCustomer;
 const getDataTracking = (state) => state.master.getDataTracking;
 const getDataOrders = (state) => state.master.getDataOrders;
 const getDataOrderTransaction = (state) => state.master.getDataOrderTransaction;
+const getDataOrderTracking = (state) => state.master.getDataOrderTracking;
 
 const selectorMaster = {
     getDataCustomer,
@@ -20,6 +21,7 @@ const selectorMaster = {
     getDataTracking,
     getDataOrders,
     getDataOrderTransaction,
+    getDataOrderTracking,
 };
 
 export default selectorMaster;

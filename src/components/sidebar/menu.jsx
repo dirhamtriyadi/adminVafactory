@@ -68,6 +68,11 @@ const Menu = [
         icon: "fas fa-money-bill-alt",
         title: "Order Transaction",
     },
+    {
+        path: "/order-tracking",
+        icon: "fas fa-truck",
+        title: "Order Tracking",
+    },
 ];
 
 export default Menu;
