@@ -118,7 +118,7 @@ let FormDataOrderTransaction = ({pristine, submitting}) => {
                 placeholder="Masukan Tanggal Transaksi"
             />
         </div>
-        <div className="col-12 text-rig">
+        <div className="col-12 text-right">
             <button className="btn btn-primary" type="button" onClick={() => dispatch(simpanDataOrderTransaction())} disabled={pristine || submitting || isLoading}>
                 {isLoading ? (
                     <>

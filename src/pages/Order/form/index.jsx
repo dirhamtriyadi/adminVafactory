@@ -191,7 +191,7 @@ let FormDataOrders = ({ pristine, submitting }) => {
                     placeholder="Masukan Tanggal Order"
                 />
             </div>
-            <div className="col-12 text-rig">
+            <div className="col-12 text-right">
                 <button
                     className="btn btn-primary"
                     type="button"
