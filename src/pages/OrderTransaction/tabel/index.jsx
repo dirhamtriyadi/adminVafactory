@@ -13,7 +13,7 @@ const TabelOrderTransaction = () => {
   const columns = [
     {
       dataField: "order.order_number",
-      text: "No Order",
+      text: "NO Order",
       sort: true,
     },
     {
