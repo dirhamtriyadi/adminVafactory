@@ -77,7 +77,7 @@ const TabelOrderTracking = () => {
             order: item.order,
             tracking: item.tracking,
             description: item.description,
-            status: item.status,
+            status: item.status === 1 ? "Dalam Proses" : "Selesai",
             date: item.date,
         };
         return row;
