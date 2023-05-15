@@ -19,8 +19,10 @@ import { simpanDataOrderTracking } from "../redux";
 
 let FormDataOrderTracking = ({ pristine, submitting }) => {
     const dispatch = useDispatch();
-    let dataOrder = useSelector(selectorMaster.getDataOrders || []);
-    let dataTracking = useSelector(selectorMaster.getDataTracking || []);
+    const dataOrder = useSelector(selectorMaster.getDataOrders || []);
+    const dataTracking = useSelector(selectorMaster.getDataTracking || []);
+
+    let cekTracking = dataTracking[0] === undefined ? [] : dataTracking[0];
 
     useEffect(() => {
         dispatch(masterActions.getDataOrders());
@@ -70,12 +72,12 @@ let FormDataOrderTracking = ({ pristine, submitting }) => {
                     name="tracking_id"
                     component={ReanderSelect}
                     options={
-                        dataTracking === 0
+                        cekTracking === 0
                             ? []
-                            : dataTracking.map((list) => {
+                            : cekTracking.map((list) => {
                                 let data = {
-                                    value: list[0].id,
-                                    name: list[0].name,
+                                    value: list.id,
+                                    name: list.name,
                                 };
                                 return data;
                             })
