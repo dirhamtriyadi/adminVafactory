@@ -13,7 +13,7 @@ const TabelOrderTracking = () => {
     const columns = [
         {
             dataField: "order.order_number",
-            text: "NO Order",
+            text: "No Order",
             sort: true
         },
         {
