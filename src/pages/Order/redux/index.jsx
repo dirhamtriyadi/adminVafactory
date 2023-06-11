@@ -169,10 +169,10 @@ export const simpanDataTracking = () => {
                           ToastNotification("info", res.data?.total?.[0]);
                           return false;
                       }
-                      if (res.data?.discount?.[0]) {
-                          ToastNotification("info", res.data?.discount?.[0]);
-                          return false;
-                      }
+                    //   if (res.data?.discount?.[0]) {
+                    //       ToastNotification("info", res.data?.discount?.[0]);
+                    //       return false;
+                    //   }
                       if (res.data?.subtotal?.[0]) {
                           ToastNotification("info", res.data?.subtotal?.[0]);
                           return false;
@@ -235,10 +235,10 @@ export const simpanDataTracking = () => {
                           ToastNotification("info", res.data?.total?.[0]);
                           return false;
                       }
-                      if (res.data?.discount?.[0]) {
-                          ToastNotification("info", res.data?.discount?.[0]);
-                          return false;
-                      }
+                    //   if (res.data?.discount?.[0]) {
+                    //       ToastNotification("info", res.data?.discount?.[0]);
+                    //       return false;
+                    //   }
                       if (res.data?.subtotal?.[0]) {
                           ToastNotification("info", res.data?.subtotal?.[0]);
                           return false;

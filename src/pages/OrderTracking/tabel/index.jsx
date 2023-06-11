@@ -41,23 +41,25 @@ const TabelOrderTracking = () => {
             text: "Action",
             formatter: (cell, row) => {
                 return (
-                    <div className="d-flex">
-                        <button
-                            className="btn btn-sm btn-warning mr-2"
-                            onClick={() => {
-                                showModal(row, true);
-                            }}
-                        >
-                            <i className="fa fa-edit"></i>
-                        </button>
-                        <button
-                            className="btn btn-sm btn-danger"
-                            onClick={() => {
-                                dispatch(hapusDataOrderTracking(row));
-                            }}
-                        >
-                            <i className="fa fa-trash"></i>
-                        </button>
+                    <div className="row text-center">
+                        <div className="col-12 text-center">
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => {
+                                    showModal(row, true);
+                                }}
+                            >
+                                <i className="fa fa-edit"></i>
+                            </button>
+                            <button
+                                className="btn btn-danger ml-2"
+                                onClick={() => {
+                                    dispatch(hapusDataOrderTracking(row));
+                                }}
+                            >
+                                <i className="fa fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
                 );
             },
