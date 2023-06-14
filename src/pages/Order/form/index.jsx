@@ -14,6 +14,7 @@ import {
     ReanderSelect,
     masterActions,
     currencyMask,
+    getItem,
 } from "../../../components";
 import {
     cariNamaCustomer,
@@ -59,7 +60,7 @@ let FormDataOrders = ({ pristine, submitting }) => {
                 component={HiidenFiled}
                 type="hidden"
                 label="user"
-                value={localStorage.getItem("userdata.id")}
+                value={getItem("userdata").id}
                 readOnly={isEdit}
             />
             <div className="col-12">
