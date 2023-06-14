@@ -4,8 +4,9 @@ const DetailOrder = () => {
   const dispatch = useDispatch()
   const getDataOrders = useSelector(selectorMaster.getDataOrders)
   const getDataEdit = useSelector(selectorUtility.getDataEdit)
+  const dataFilter = getDataOrders.filter((list) => list.id === getDataEdit.id)
 
-  console.log(getDataOrders.filter((list) => list.id === getDataEdit.id));
+  console.log(dataFilter);
 
   const showModal = (row, isEdit) => {
     dispatch(utilityActions.getDataEdit(row))
@@ -21,13 +22,13 @@ const DetailOrder = () => {
           <tr>
             <td>Order Transaction</td>
             <td>
-              <button className='btn btn-primary' onClick={() => showModal(getDataOrders.filter((list) => list.id === getDataEdit.id), "OrderTransaction")}><i className="fa fa-eye"></i></button>
+              <button className='btn btn-primary' onClick={() => showModal(dataFilter, "OrderTransaction")}><i className="fa fa-eye"></i></button>
             </td>
           </tr>
           <tr>
             <td>Order Tracking</td>
             <td>
-              <button className='btn btn-primary' onClick={() => showModal(getDataOrders.filter((list) => list.id === getDataEdit.id), "OrderTracking")}><i className="fa fa-eye"></i></button>
+              <button className='btn btn-primary' onClick={() => showModal(dataFilter, "OrderTracking")}><i className="fa fa-eye"></i></button>
             </td>
           </tr>
         </tbody>
