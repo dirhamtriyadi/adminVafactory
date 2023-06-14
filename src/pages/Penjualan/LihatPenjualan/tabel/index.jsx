@@ -23,7 +23,7 @@ const TabelPenjualan = (props) => {
   const columns = [
     {
       dataField: "transaction_number",
-      text: "NO Transaksi",
+      text: "No Transaksi",
     },
     {
       dataField: "customerName",

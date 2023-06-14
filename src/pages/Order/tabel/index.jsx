@@ -13,7 +13,7 @@ const TabelOrders = () => {
     const columns = [
         {
             dataField: "order_number",
-            text: "NO Order",
+            text: "No Order",
             sort: true
         },
         {
@@ -85,21 +85,25 @@ const TabelOrders = () => {
             formatter: (rowcontent, row) => {
                 return (
                     <div className="row text-center">
-                        <div className="col-6 text-right">
-                        <button
-                            onClick={() => showModal(row, true)}
-                            className="btn btn-primary"
-                        >
-                            <i className="fa fa-edit"></i>
-                        </button>
-                        </div>
-                        <div className="col-6 text-left">
-                        <button
-                            onClick={() => dispatch(hapusDataOrders(row))}
-                            className="btn btn-danger ml-2"
-                        >
-                            <i className="fa fa-trash"></i>
-                        </button>
+                        <div className="col-12 text-center">
+                            <button
+                                onClick={() => showModal(row, true)}
+                                className="btn btn-primary"
+                            >
+                                <i className="fa fa-edit"></i>
+                            </button>
+                            <button
+                                onClick={() => showModal(row, "DetailOrder")}
+                                className="btn btn-warning ml-2"
+                            >
+                                <i className="fa fa-eye"></i>
+                            </button>
+                            <button
+                                onClick={() => dispatch(hapusDataOrders(row))}
+                                className="btn btn-danger ml-2"
+                            >
+                                <i className="fa fa-trash"></i>
+                            </button>
                         </div>
                     </div>
                 );
@@ -108,8 +112,14 @@ const TabelOrders = () => {
     ]
     const showModal = (row, isEdit) => {
         dispatch(utilityActions.getDataEdit(row))
+        dispatch(utilityActions.showModalBanyak(
+            isEdit === "DetailOrder" ? "DetailOrder" : "FormOrders"
+        ))
+        if (isEdit === "DetailOrder") {
+            dispatch(utilityActions.setLoading(false))
+        }
         dispatch(utilityActions.showModal())
-        dispatch(utilityActions.isEdit(isEdit ? true : false))
+        dispatch(utilityActions.isEdit(isEdit === "EDIT" ? true : false))
     }
 
     let hasil = data.map((list) => {
@@ -132,7 +142,7 @@ const TabelOrders = () => {
     })
 
   return (
-    <Tabel handleClick={() => showModal(false)} keyField="id" tambahData={true} columns={columns} data={hasil || []} />
+    <Tabel handleClick={() => showModal(false, "TAMBAH")} keyField="id" tambahData={true} columns={columns} data={hasil || []} />
   )
 }
 

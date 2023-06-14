@@ -34,7 +34,7 @@ export const loginAction = () => {
         }, 200);
       })
       .catch((err) => {
-        // console.log(err)
+        console.log(err)
         ToastNotification(
           "info",
           "Email atau password yang anda masukan salah !!!"
