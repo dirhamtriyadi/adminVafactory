@@ -1,6 +1,7 @@
 import { lazy } from "react";
 const LaporanUangKas = lazy(() => import("./Laporan/LaporanUangKas"));
 const UangKas = lazy(() => import("./UangKas"));
+const Dashboard = lazy(() => import("./Dashboard/dashboard"));
 const DashboardV1 = lazy(() => import("./Dashboard/dashboard-v1"));
 const Login = lazy(() => import("./Auth/index.jsx"));
 const JenisPembayaran = lazy(() => import("./DataMaster/JenisPembyaran"));
@@ -24,6 +25,7 @@ export {
     DataCustomer,
     Penjualan,
     DataBarang,
+    Dashboard,
     DashboardV1,
     UangKas,
     Login,

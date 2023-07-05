@@ -1,12 +1,22 @@
 import {
   React,
   Tabel,
+  masterActions,
+  selectorMaster,
+  useSelector,
   useDispatch,
+  useEffect,
   utilityActions,
 } from "../../../../components";
 
 const TabelUsers = () => {
   const dispatch = useDispatch();
+  const data = useSelector(selectorMaster.getDataUsers);
+
+  useEffect(() => {
+    dispatch(masterActions.getDataUsers());
+  }, [dispatch]);
+
   const columns = [
     {
       dataField: "name",
@@ -51,9 +61,9 @@ const TabelUsers = () => {
   return (
     <Tabel
       handleClick={() => showModalUser()}
-      keyField="_id"
+      keyField="id"
       tambahData={true}
-      data={[]}
+      data={data[0] || []}
       columns={columns}
     />
   );

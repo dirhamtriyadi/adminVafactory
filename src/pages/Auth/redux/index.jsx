@@ -29,6 +29,8 @@ export const loginAction = () => {
       .then((res) => {
         setItem("userdata", res.data);
         setItem("token", res.data.access_token);
+        setItem("role", res.data.role)
+        console.log(res.data);
         setTimeout(() => {
           window.location.replace("/dashboard");
         }, 200);

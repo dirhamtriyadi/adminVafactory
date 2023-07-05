@@ -1,4 +1,4 @@
-import { React,Route } from '../helpers';
+import { React,Route, getItem } from '../helpers';
 import { PageSettings } from './../../config/page-settings.js';
 import SidebarNavList from './sidebar-nav-list.jsx';
 import menus from './menu.jsx';
@@ -11,7 +11,8 @@ class SidebarNav extends React.Component {
 		this.state = {
 			active: -1,
 			clicked: -1,
-			menus: menus
+			menus: menus,
+			user: getItem('role')
 		};
 		
 		this.handleSidebarSearch = this.handleSidebarSearch.bind(this);
@@ -84,13 +85,49 @@ class SidebarNav extends React.Component {
 				<li className="nav-header">Navigation</li>
 				{this.state.menus.map((menu, i) => (
 					<Route path={menu.path} exact={menu.exact} key={i} children={({ match }) => (
-						<SidebarNavList
-							data={menu} 
-							key={i} 
-							expand={(e) => this.handleExpand(e, i, match)}
-							active={i === this.state.active} 
-							clicked={this.state.clicked}
-						/>
+						menu.children ? (
+							// this.state.user.includes(menu.role[0]) && (
+							// 	<SidebarNavList
+							// 		data={menu} 
+							// 		key={i} 
+							// 		expand={(e) => this.handleExpand(e, i, match)}
+							// 		active={i === this.state.active} 
+							// 		clicked={this.state.clicked}
+							// 	/>
+							// )
+							this.state.user.map((role, index) => (
+								role.name === menu.role[0] && (
+									<SidebarNavList
+										data={menu} 
+										key={i} 
+										expand={(e) => this.handleExpand(e, i, match)}
+										active={i === this.state.active} 
+										clicked={this.state.clicked}
+									/>
+								)
+							))
+						) : (
+							// this.state.user.includes(menu.role) && (
+							// 	<SidebarNavList
+							// 		data={menu} 
+							// 		key={i} 
+							// 		expand={(e) => this.handleExpand(e, i, match)}
+							// 		active={i === this.state.active} 
+							// 		clicked={this.state.clicked}
+							// 	/>
+							// )
+							this.state.user.map((role, index) => (
+								role.name === menu.role && (
+									<SidebarNavList
+										data={menu} 
+										key={i} 
+										expand={(e) => this.handleExpand(e, i, match)}
+										active={i === this.state.active} 
+										clicked={this.state.clicked}
+									/>
+								)
+							))
+						)
 					)} />
 				))}
 			</ul>

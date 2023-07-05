@@ -1,6 +1,8 @@
 import {
     GET_DATA_CASH,
+    GET_DATA_CASH_ALL,
     GET_DATA_CUSTOMER,
+    GET_DATA_USERS,
     GET_DATA_JENIS,
     GET_DATA_JENIS_PEMBAYARAN,
     GET_DATA_PRODUK,
@@ -15,7 +17,9 @@ const initialState = {
     getDataKenis: [],
     getDataProduk: [],
     getDataCash: [],
+    getDataCashAll: [],
     getDataCustomer: [],
+    getDataUsers: [],
 
     // Ade
     getDataTracking: [],
@@ -36,6 +40,11 @@ const master = (state = initialState, actions) => {
                 ...state,
                 getDataCash: actions.payload.data,
             };
+        case GET_DATA_CASH_ALL:
+            return {
+                ...state,
+                getDataCashAll: actions.payload.data,
+            };
         case GET_DATA_PRODUK:
             return {
                 ...state,
@@ -50,6 +59,11 @@ const master = (state = initialState, actions) => {
             return {
                 ...state,
                 getDataJenisPembayaran: actions.payload.data,
+            };
+        case GET_DATA_USERS:
+            return {
+                ...state,
+                getDataUsers: actions.payload.data,
             };
 
         // Ade

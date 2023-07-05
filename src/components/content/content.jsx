@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { React, withRouter, Route } from "../helpers";
+import { React, withRouter, Route, getItem } from "../helpers";
 import Skeleton from "react-loading-skeleton";
 
 import routes from "./../../config/page-route.jsx";
@@ -16,6 +16,13 @@ function setTitle(path, routeArray) {
 }
 
 class Content extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: getItem("role"),
+    };
+    console.log(this.state.user);
+  }
   componentDidMount() {
     setTitle(this.props.history.location.pathname, routes);
   }
@@ -43,12 +50,33 @@ class Content extends React.Component {
               }
             >
               {routes.map((route, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.component}
-                />
+                route.path === "/" || route.path === "/login" ? (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    component={route.component}
+                  />
+                ) : (
+                  // this.state.user.includes(route.role) && (
+                  //   <Route
+                  //     key={index}
+                  //     path={route.path}
+                  //     exact={route.exact}
+                  //     component={route.component}
+                  //   />
+                  // )
+                  this.state.user.map((item, index) => (
+                    item.name === route.role && (
+                      <Route
+                          key={index}
+                          path={route.path}
+                          exact={route.exact}
+                          component={route.component}
+                        />
+                    )
+                  ))
+                )
               ))}
             </div>
           )}

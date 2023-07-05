@@ -1,5 +1,6 @@
 import { React, useEffect, masterActions, Tabel, utilityActions, useDispatch, selectorMaster, useSelector } from '../../../components';
 import { hapusDataOrders } from '../redux';
+import InvoiceOrder from '../pdf/invoice';
 
 const TabelOrders = () => {
     const dispatch = useDispatch();
@@ -87,8 +88,17 @@ const TabelOrders = () => {
                     <div className="row text-center">
                         <div className="col-12 text-center">
                             <button
+                                onClick={() => {
+                                    console.log("ini button",row);
+                                    InvoiceOrder(row)
+                                }}
+                                className="btn btn-secondary"
+                            >
+                                <i className="fa fa-print"></i>
+                            </button>
+                            <button
                                 onClick={() => showModal(row, true)}
-                                className="btn btn-primary"
+                                className="btn btn-primary ml-2"
                             >
                                 <i className="fa fa-edit"></i>
                             </button>
@@ -135,6 +145,8 @@ const TabelOrders = () => {
             discount: list.discount,
             subtotal: list.subtotal,
             name: list.name,
+            orderTracking: list.orderTracking,
+            orderTransaction: list.orderTransaction,
             description: list.description,
             order_date: list.order_date,
         }

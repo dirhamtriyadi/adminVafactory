@@ -14,6 +14,7 @@ import { hapusUangKas } from "../redux";
 const TabelUangkas = () => {
   const dispatch = useDispatch();
   const data = useSelector(selectorMaster.getDataCash)
+  console.log("ini di uang kas",data);
   useEffect(() => {
     dispatch(masterActions.getDataCash());
   }, [dispatch]);

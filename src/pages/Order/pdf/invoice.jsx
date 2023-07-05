@@ -1,0 +1,266 @@
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import { getToday, getItem } from "../../../components";
+
+const InvoiceOrder = (data = "") => {
+    // console.log(data);
+    const doc = new jsPDF("p", "mm", [297, 210]);
+    let tableRows = [];
+    let tableColumn = [];
+    let rows = []
+    let finalY = 40;
+    let y = 0;
+
+    doc.setFontSize(15);
+    doc.text("INVOICE ORDER", 14, 15);
+    doc.setFontSize(20);
+    doc.text("VA Factory", 145, 15);
+    doc.setFontSize(8);
+    doc.text("Tanggal            : " + data.order_date, 14, 20);
+    doc.text("Nama               : " + data.customer.name, 14, 25);
+    doc.text(
+        "Jl. Raya Cicalengka - Majalaya, Cikuya, Kec. Cicalengka, Kabupaten Bandung, Jawa Barat 40395".slice(
+            0,
+            40
+        ),
+        145,
+        20
+    );
+    doc.text("Kabupaten Bandung, Jawa Barat 40395".slice(0, 40), 145, 25);
+    doc.text("No Faktur         : " + data.order_number, 14, 30);
+    doc.setFontSize(10);
+    doc.setProperties({
+        title: "INVOICE ORDER",
+    });
+
+    // Head Table
+    tableColumn = [
+        [
+            {
+                content: `Nama Customer`,
+            },
+            {
+                content: `Jenis Print`
+            },
+            {
+                content: `Jumlah`
+            },
+            {
+                content: `Harga`
+            },
+            {
+                content: `Total Harga`
+            },
+            {
+                content: `Diskon`
+            },
+            {
+                content: `Sub Total`
+            },
+            {
+                content: `Nama Order`
+            },
+            {
+                content: `Tanggal Order`
+            }
+        ]
+    ]
+
+    // Body Table
+    rows = [
+        data.customer.name,
+        data.print_type.name,
+        data.qty,
+        parseInt(data.price).toLocaleString("kr-KO"),
+        parseInt(data.total).toLocaleString("kr-KO"),
+        parseInt(data.discount).toLocaleString("kr-KO"),
+        parseInt(data.subtotal).toLocaleString("kr-KO"),
+        data.name,
+        data.order_date
+    ]
+    tableRows.push(rows)
+    // data.map((item) => {
+    //     const rows = [
+    //         item.order_number,
+    //         item.customer_name,
+    //         item.print_type,
+    //         item.quantity,
+    //         item.price,
+    //         item.total_price,
+    //         item.discount,
+    //         item.sub_total,
+    //         item.order_name,
+    //         item.order_date
+    //     ]
+    //     tableRows.push(rows)
+    // })
+
+    doc.setFont(undefined, "bold");
+    doc.text("Order", 14, 37);
+    doc.autoTable({
+        head: tableColumn,
+        body: tableRows,
+        startY: finalY,
+        theme: "plain",
+        rowPageBreak: "avoid",
+        margin: { top: 10 },
+        bodyStyles: {
+            fontSize: 8,
+        },
+        headStyles: {
+            fontSize: 8,
+            textColor: "#000",
+            fillColor: "#E8E5E5",
+        }
+    })
+    // Transaction
+    finalY = doc.autoTableEndPosY() + 3
+    doc.setFont(undefined, "bold");
+    doc.text("Transaksi", 14, finalY);
+    y = finalY + 3
+    tableColumn = [
+        [
+            {
+                content: `Keterangan`
+            },
+            {
+                content: `Metode Pembayaran`
+            },
+            {
+                content: `Jumlah Pembayaran`
+            }
+        ]
+    ]
+    tableRows = []
+    let total = 0
+    data.orderTransaction.map((item) => {
+        let rows = [
+            item.description,
+            item.payment_method.name,
+            parseInt(item.amount).toLocaleString("kr-KO")
+        ]
+        tableRows.push(rows)
+        total = total + item.amount
+    })
+    let totalFooter = [
+        {
+            colSpan: 2,
+            content: `Total`,
+            styles: {
+                halign: "center",
+                fontStyle: "bold",
+            }
+        },
+        {
+            content: parseInt(total).toLocaleString("kr-KO"),
+        }
+    ]
+    tableRows.push(totalFooter)
+    let sisaFooter = [
+        {
+            colSpan: 2,
+            content: `Sisa Tagihan`,
+            styles: {
+                halign: "center",
+                fontStyle: "bold",
+            }
+        },
+        {
+            content: parseInt(data.subtotal - total).toLocaleString("kr-KO"),
+        }
+    ]
+    tableRows.push(sisaFooter)
+
+    doc.autoTable({
+        head: tableColumn,
+        body: tableRows,
+        startY: y,
+        theme: "plain",
+        rowPageBreak: "avoid",
+        margin: { top: 10 },
+        bodyStyles: {
+            fontSize: 8,
+        },
+        headStyles: {
+            fontSize: 8,
+            textColor: "#000",
+            fillColor: "#E8E5E5",
+        }
+    })
+    // Tracking
+    finalY = doc.autoTableEndPosY() + 3
+    doc.setFont(undefined, "bold");
+    doc.text("Tracking", 14, finalY);
+    tableColumn = [
+        [
+            {
+                content: `Proses`
+            },
+            {
+                content: `Keterangan`
+            },
+            {
+                content: `Status`
+            },
+            {
+                content: `Tanggal`
+            }
+        ]
+    ]
+    tableRows = []
+    data.orderTracking.map((item) => {
+        let rows = [
+            item.tracking.name,
+            item.description,
+            item.status === 1 ? "Selesai" : "Dalam Proses",
+            item.date
+        ]
+        tableRows.push(rows)
+    })
+
+    y = finalY + 3
+    let printed = [
+        {
+            colSpan: 9,
+            content: `Printed By ${getItem("userdata").name} / ${getToday()}`,
+            styles: {
+                    fontStyle: "italic",
+                    textColor: "#000",
+                },
+            },
+        ];
+    tableRows.push(printed);
+    doc.autoTable({
+        head: tableColumn,
+        body: tableRows,
+        startY: y,
+        theme: "plain",
+        rowPageBreak: "avoid",
+        margin: { top: 10 },
+        bodyStyles: {
+            fontSize: 8,
+        },
+        headStyles: {
+            fontSize: 8,
+            textColor: "#000",
+            fillColor: "#E8E5E5",
+        }
+    })
+    tableRows = []
+    const pages = doc.internal.getNumberOfPages();
+    const pageWidth = doc.internal.pageSize.width;
+    const pageHeight = doc.internal.pageSize.height;
+    doc.setFontSize(10);
+    for (let i = 1; i < pages + 1; i++) {
+        let horizontalPos = pageWidth / 2;
+        let verticalPos = pageHeight / 10;
+        doc.setPage(i);
+        doc.text(`${i} of ${pages}`, horizontalPos, verticalPos, {
+            align: "center",
+          });
+    }
+    doc.save(`INVOICE ORDER.pdf`);
+
+}
+
+export default InvoiceOrder;

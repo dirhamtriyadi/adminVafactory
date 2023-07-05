@@ -2,7 +2,9 @@ const getDataJenisPembayaran = (state) => state.master.getDataJenisPembayaran;
 const getDataKenis = (state) => state.master.getDataKenis;
 const getDataProduk = (state) => state.master.getDataProduk;
 const getDataCash = (state) => state.master.getDataCash;
+const getDataCashAll = (state) => state.master.getDataCashAll;
 const getDataCustomer = (state) => state.master.getDataCustomer;
+const getDataUsers = (state) => state.master.getDataUsers;
 
 // Ade
 const getDataTracking = (state) => state.master.getDataTracking;
@@ -16,6 +18,8 @@ const selectorMaster = {
     getDataKenis,
     getDataProduk,
     getDataCash,
+    getDataCashAll,
+    getDataUsers,
 
     // Ade
     getDataTracking,
