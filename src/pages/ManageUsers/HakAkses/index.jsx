@@ -41,11 +41,11 @@ let HakAkses = () => {
     setUserData(cekUsers === undefined ? [] : cekUsers.filter((list) => list.id === user.id))
   }, [dispatch])
   
-  useEffect(() => {
-    setTreeData(Menu);
-    dispatch(masterActions.getDataUsers())
-    setUserData(cekUsers === undefined ? [] : cekUsers.filter((list) => list.id === user.id))
-  }, []);
+  // useEffect(() => {
+  //   setTreeData(Menu);
+  //   dispatch(masterActions.getDataUsers())
+  //   setUserData(cekUsers === undefined ? [] : cekUsers.filter((list) => list.id === user.id))
+  // }, []);
 
   // const selectThis = (node, path) => {
   //   setcurrentNode({
