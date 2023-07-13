@@ -110,3 +110,41 @@ export const hapusDataOrderTracking = (row) => {
         });
     }
 }
+
+export const updateProsesOrderTracking = (row) => {
+    return async (dispatch, getState) => {
+        Swal.fire({
+            html:
+                "Apakah Anda Yakin Ingin " +
+                "Menyelesaikan ini " +
+                "<h1><b>Order Tracking  " +
+                row.order.order_number +
+                "</b> ?</h1>",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Selesai!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(utilityActions.setLoading(true));
+                putDataParams("order-trackings/update/" + row.id, { status: 1 })
+                    .then((res) => {
+                        dispatch(utilityActions.setLoading(false));
+                        dispatch(masterActions.getDataOrderTracking());
+                        ToastNotification(
+                            "success",
+                            "Berhasil mengupdate data orders"
+                        );
+                    })
+                    .catch((err) => {
+                        ToastNotification(
+                            "info",
+                            "Update data orders gagal, silahkan coba lagi !!!"
+                        );
+                        dispatch(utilityActions.setLoading(false));
+                    });
+            }
+        });
+    }
+}
