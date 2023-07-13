@@ -224,7 +224,7 @@ let HakAkses = () => {
 const maptostate = (state) => {
   return {
     initialValues: {
-      user_id: 0,
+      user_id: getItem("userdata").id,
     }
   }
 }
