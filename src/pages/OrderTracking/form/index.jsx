@@ -102,8 +102,8 @@ let FormDataOrderTracking = ({ pristine, submitting }) => {
                     name="status"
                     component={ReanderSelect}
                     options={[
-                        { value: "0", name: "Dalam Proses" },
-                        { value: "1", name: "Selesai" },
+                        { value: 0, name: "Dalam Proses" },
+                        { value: 1, name: "Selesai" },
                     ]}
                     placeholder="Masukan Status"
                     label="Status"
