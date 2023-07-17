@@ -5,6 +5,7 @@ import {
     Field,
     HiidenFiled,
     ReanderField,
+    ReanderTextArea,
     useDispatch,
     reduxForm,
     connect,
@@ -102,7 +103,7 @@ let FormDataOrders = ({ pristine, submitting }) => {
                     }
                     type="text"
                     onChange={(e) => dispatch(cariNamaPrintType(e))}
-                    label="Nama Type Print"
+                    label="Type Print"
                     placeholder="Masukan Type Print"
                     readOnly={isEdit}
                 />
@@ -177,7 +178,7 @@ let FormDataOrders = ({ pristine, submitting }) => {
             <div className="col-12">
                 <Field
                     name="description"
-                    component={ReanderField}
+                    component={ReanderTextArea}
                     type="text"
                     label="Deskripsi"
                     placeholder="Masukan Deskripsi"

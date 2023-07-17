@@ -9,6 +9,7 @@ import { Field, reduxForm, formValueSelector ,reset} from "redux-form";
 import {
   ReanderField,
   ReanderSelect,
+  ReanderTextArea,
   HiidenFiled,
   InputGroup,
 } from "../../components/helpers/field";
@@ -96,6 +97,7 @@ export {
   ModalGlobal,
   ReanderField,
   ReanderSelect,
+  ReanderTextArea,
   formValueSelector,
   Component,
   connect,
