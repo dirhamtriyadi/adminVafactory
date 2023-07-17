@@ -111,7 +111,7 @@ export const simpanDataTracking = () => {
         // }
 
         if (dataorder === undefined) {
-            nomerGenerate = "TR" + getToday().replaceAll("-", 0) + "0001";
+            nomerGenerate = "O" + getToday().replaceAll("-", 0) + "0001";
         } else {
             let nomor = dataorder.order_number;
             let str = nomor.substring(0, nomor.length - 1);
