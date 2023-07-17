@@ -89,7 +89,7 @@ const TabelOrders = () => {
                         <div className="col-12 text-center">
                             <button
                                 onClick={() => {
-                                    console.log("ini button",row);
+                                    // console.log("ini button",row);
                                     InvoiceOrder(row)
                                 }}
                                 className="btn btn-secondary"

@@ -30,13 +30,13 @@ export const loginAction = () => {
         setItem("userdata", res.data);
         setItem("token", res.data.access_token);
         setItem("role", res.data.role)
-        console.log(res.data);
+        // console.log(res.data);
         setTimeout(() => {
           window.location.replace("/dashboard");
         }, 200);
       })
       .catch((err) => {
-        console.log(err)
+        // console.log(err)
         ToastNotification(
           "info",
           "Email atau password yang anda masukan salah !!!"

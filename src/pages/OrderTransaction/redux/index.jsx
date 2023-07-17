@@ -70,7 +70,7 @@ export const simpanDataOrderTransaction = (data) => {
                     ToastNotification("success", "Berhasil menambah data Order Transaction")
                 })
                 .catch((err) => {
-                    console.log(err);
+                    // console.log(err);
                     ToastNotification("info", "Tambah data Order Transaction gagal, silahkan coba lagi !!!")
                     dispatch(utilityActions.setLoading(false))
                 });

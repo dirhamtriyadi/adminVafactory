@@ -70,7 +70,7 @@ export const simpanDataCustomer = () => {
             ToastNotification("success", "Berhasil menambahan data customer");
           })
           .catch((err) => {
-            console.log(err)
+            // console.log(err)
             ToastNotification(
               "info",
               "Penambahan data customer gagal, silahkan coba lagi !!!"

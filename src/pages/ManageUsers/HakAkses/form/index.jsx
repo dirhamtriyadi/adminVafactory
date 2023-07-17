@@ -101,7 +101,7 @@ let FormDataHakAkses = ({pristine, submitting}) => {
 }
 
 const maptostate = (state) => {
-    console.log(state);
+    // console.log(state);
     return {
         initialValues: {
             name: null,

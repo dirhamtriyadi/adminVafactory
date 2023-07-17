@@ -33,8 +33,8 @@ const DetailOrderTracking = () => {
     ]
 
     const showModal = (row, isEdit) => {
-        console.log(row);
-        console.log(isEdit);
+        // console.log(row);
+        // console.log(isEdit);
         dispatch(utilityActions.getDataEdit(row))
         dispatch(utilityActions.showModalBanyak(
             isEdit === "TAMBAHORDERTRACKING" ? "TAMBAHORDERTRACKING" : "hehe",

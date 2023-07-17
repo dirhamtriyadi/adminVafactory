@@ -19,7 +19,7 @@ const Dashboard = () => {
     setUangKeluar(0);
     getDataCash.map((item) => {
       if (item.cash_flow_type === "UANGMASUK") {
-        console.log(item.amount);
+        // console.log(item.amount);
         setUangMasuk((uangMasuk) => uangMasuk + item.amount);
       } else {
         setUangKeluar((uangKeluar) => uangKeluar + item.amount);
@@ -29,7 +29,7 @@ const Dashboard = () => {
     setUangTransfer(0);
     getDataCashAll.map((item) => {
       if (item.payment_method?.name === "CASH") {
-        console.log(item.amount);
+        // console.log(item.amount);
         setUangCash((uangCash) => uangCash + item.amount);
       } else {
         setUangTransfer((uangTransfer) => uangTransfer + item.amount);
@@ -37,7 +37,7 @@ const Dashboard = () => {
     })
   }, [getDataCash, getDataCashAll]);
   
-  console.log("ini di dashboard", getDataCash);
+  // console.log("ini di dashboard", getDataCash);
 
   return (
     <div>

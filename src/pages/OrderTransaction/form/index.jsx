@@ -138,7 +138,7 @@ let FormDataOrderTransaction = ({pristine, submitting}) => {
 
 const maptostate = (state) => {
     if (state.utility.getDataEdit !== null) {
-        console.log(state.utility.getDataEdit);
+        // console.log(state.utility.getDataEdit);
         return {
             initialValues: {
                 id: state.utility.getDataEdit.id,

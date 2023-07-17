@@ -47,7 +47,7 @@ export const simpanDataOrderTracking = () => {
                 })
             : postData("order-trackings", data)
                 .then((res) => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     dispatch(utilityActions.setLoading(false))
                     if (res.data?.order_id?.[0]) {
                         ToastNotification("info", res.data?.order_id?.[0])

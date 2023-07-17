@@ -34,7 +34,7 @@ let HakAkses = () => {
   const [aktif,setAktif] = useState(true);
   const [userData, setUserData] = useState([]);
 
-  console.log(userData);
+  // console.log(userData);
   
   useEffect(() => {
     dispatch(masterActions.getDataUsers())
@@ -75,7 +75,7 @@ let HakAkses = () => {
             onChange={(e) => {
               // console.log("ini onchange",e);
               setUserData(cekUsers.filter((list) => list.id === e))
-              console.log("dari onchange", userData);
+              // console.log("dari onchange", userData);
             }}
             options={
               cekUsers === 0
@@ -85,7 +85,7 @@ let HakAkses = () => {
                       value: list.id,
                       name: list.name,
                     };
-                    console.log(data);
+                    // console.log(data);
                     return data;
                   })
             }
@@ -199,7 +199,7 @@ let HakAkses = () => {
                 <tbody>
                   {
                       userData[0] === undefined ? [] : userData[0].role.map((list, index) => {
-                      console.log(list);
+                      // console.log(list);
                       return (
                           <tr key={index}>
                           <td>{list.name}</td>

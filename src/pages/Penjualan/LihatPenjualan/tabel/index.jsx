@@ -83,7 +83,7 @@ const TabelPenjualan = (props) => {
     
     return row;
   });
-  console.log(hasil);
+  // console.log(hasil);
 
   return <Tabel keyField="transaction_number" data={hasil} columns={columns} />;
 };

@@ -265,7 +265,7 @@ export const simpanDataTracking = () => {
                       );
                   })
                   .catch((err) => {
-                      console.log(err);
+                    //   console.log(err);
                       ToastNotification(
                           "info",
                           "Tambah data tracking gagal, silahkan coba lagi !!!"
