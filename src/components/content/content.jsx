@@ -21,7 +21,7 @@ class Content extends React.Component {
     this.state = {
       user: getItem("role"),
     };
-    console.log(this.state.user);
+    // console.log(this.state.user);
   }
   componentDidMount() {
     setTitle(this.props.history.location.pathname, routes);
