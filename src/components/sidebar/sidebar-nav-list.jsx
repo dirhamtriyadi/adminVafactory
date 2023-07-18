@@ -47,14 +47,30 @@ class SidebarNavList extends React.Component {
 							{this.props.data.children && (
 								<ul className={"sub-menu " + (((this.props.active || (this.props.clicked === -1 && match) || this.props.data.search) && !pageSidebarMinified) ? 'd-block ' : 'd-none')}>
 									{this.props.data.children && this.props.data.children.map((submenu, i) => (
-										// this.state.user.includes(submenu.role) && 
-											<SidebarNavList
-												data={submenu} 
-												key={i} 
-												expand={(e) => this.handleExpand(e, i, match)}
-												active={i === this.state.active} 
-												clicked={this.state.clicked}
-											/>
+										// console.log(this.state.user.includes(submenu.role)),
+										// console.log(this.state.user),
+										// console.log(submenu.role),
+										// this.state.user.includes(submenu.role) &&
+										this.state.user.map((item) => {
+											if (item.name === submenu.role) {
+												return (
+													<SidebarNavList
+														data={submenu} 
+														key={i} 
+														expand={(e) => this.handleExpand(e, i, match)}
+														active={i === this.state.active} 
+														clicked={this.state.clicked}
+													/>
+												)
+											}
+										})
+											// <SidebarNavList
+											// 	data={submenu} 
+											// 	key={i} 
+											// 	expand={(e) => this.handleExpand(e, i, match)}
+											// 	active={i === this.state.active} 
+											// 	clicked={this.state.clicked}
+											// />
 									))}
 								</ul>
 							)}

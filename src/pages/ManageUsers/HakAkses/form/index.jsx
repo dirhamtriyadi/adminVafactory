@@ -70,10 +70,11 @@ let FormDataHakAkses = ({pristine, submitting}) => {
                 options={[
                     { value: "dashboard", name: "dashboard" },
                     { value: "master-jenis-pembayaran", name: "master-jenis-pembayaran" },
-                    { value: "master-jenis", name: "master-jenis" },
+                    { value: "master-kategori", name: "master-kategori" },
                     { value: "data-customer", name: "data-customer" },
                     { value: "data-barang", name: "data-barang" },
                     { value: "penjualan", name: "penjualan" },
+                    { value: "lihat-penjualan", name: "lihat-penjualan" },
                     { value: "uang-kas", name: "uang-kas" },
                     { value: "data-users", name: "data-users" },
                     { value: "laporan-uang-kas", name: "laporan-uang-kas" },
