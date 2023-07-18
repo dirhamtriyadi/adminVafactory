@@ -76,7 +76,7 @@ let FormDataHakAkses = ({pristine, submitting}) => {
                     { value: "penjualan", name: "penjualan" },
                     { value: "uang-kas", name: "uang-kas" },
                     { value: "data-users", name: "data-users" },
-                    { value: "laporan-uangkas", name: "laporan-uangkas" },
+                    { value: "laporan-uang-kas", name: "laporan-uang-kas" },
                     { value: "tracking", name: "tracking" },
                     { value: "orders", name: "orders" },
                     { value: "order-transaction", name: "order-transaction" },
