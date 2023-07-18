@@ -40,7 +40,7 @@ const InvoiceOrder = (data = "") => {
                 content: `Nama Customer`,
             },
             {
-                content: `Jenis Print`
+                content: `Kategori`
             },
             {
                 content: `Jumlah`
@@ -61,6 +61,9 @@ const InvoiceOrder = (data = "") => {
                 content: `Nama Order`
             },
             {
+                content: `Deskripsi`
+            },
+            {
                 content: `Tanggal Order`
             }
         ]
@@ -76,6 +79,7 @@ const InvoiceOrder = (data = "") => {
         parseInt(data.discount).toLocaleString("kr-KO"),
         parseInt(data.subtotal).toLocaleString("kr-KO"),
         data.name,
+        data.description,
         data.order_date
     ]
     tableRows.push(rows)
@@ -170,6 +174,17 @@ const InvoiceOrder = (data = "") => {
         }
     ]
     tableRows.push(sisaFooter)
+    let printed = [
+        {
+            colSpan: 9,
+            content: `Printed By ${getItem("userdata").name} / ${getToday()}`,
+            styles: {
+                    fontStyle: "italic",
+                    textColor: "#000",
+                },
+        },
+    ];
+    tableRows.push(printed);
 
     doc.autoTable({
         head: tableColumn,
@@ -188,64 +203,64 @@ const InvoiceOrder = (data = "") => {
         }
     })
     // Tracking
-    finalY = doc.autoTableEndPosY() + 3
-    doc.setFont(undefined, "bold");
-    doc.text("Tracking", 14, finalY);
-    tableColumn = [
-        [
-            {
-                content: `Proses`
-            },
-            {
-                content: `Keterangan`
-            },
-            {
-                content: `Status`
-            },
-            {
-                content: `Tanggal`
-            }
-        ]
-    ]
-    tableRows = []
-    data.orderTracking.map((item) => {
-        let rows = [
-            item.tracking.name,
-            item.description,
-            item.status === 1 ? "Selesai" : "Dalam Proses",
-            item.date
-        ]
-        tableRows.push(rows)
-    })
+    // finalY = doc.autoTableEndPosY() + 3
+    // doc.setFont(undefined, "bold");
+    // doc.text("Tracking", 14, finalY);
+    // tableColumn = [
+    //     [
+    //         {
+    //             content: `Proses`
+    //         },
+    //         {
+    //             content: `Keterangan`
+    //         },
+    //         {
+    //             content: `Status`
+    //         },
+    //         {
+    //             content: `Tanggal`
+    //         }
+    //     ]
+    // ]
+    // tableRows = []
+    // data.orderTracking.map((item) => {
+    //     let rows = [
+    //         item.tracking.name,
+    //         item.description,
+    //         item.status === 1 ? "Selesai" : "Dalam Proses",
+    //         item.date
+    //     ]
+    //     tableRows.push(rows)
+    // })
 
-    y = finalY + 3
-    let printed = [
-        {
-            colSpan: 9,
-            content: `Printed By ${getItem("userdata").name} / ${getToday()}`,
-            styles: {
-                    fontStyle: "italic",
-                    textColor: "#000",
-                },
-            },
-        ];
-    tableRows.push(printed);
-    doc.autoTable({
-        head: tableColumn,
-        body: tableRows,
-        startY: y,
-        theme: "plain",
-        rowPageBreak: "avoid",
-        margin: { top: 10 },
-        bodyStyles: {
-            fontSize: 8,
-        },
-        headStyles: {
-            fontSize: 8,
-            textColor: "#000",
-            fillColor: "#E8E5E5",
-        }
-    })
+    // y = finalY + 3
+    // let printed = [
+    //     {
+    //         colSpan: 9,
+    //         content: `Printed By ${getItem("userdata").name} / ${getToday()}`,
+    //         styles: {
+    //                 fontStyle: "italic",
+    //                 textColor: "#000",
+    //             },
+    //         },
+    //     ];
+    // tableRows.push(printed);
+    // doc.autoTable({
+    //     head: tableColumn,
+    //     body: tableRows,
+    //     startY: y,
+    //     theme: "plain",
+    //     rowPageBreak: "avoid",
+    //     margin: { top: 10 },
+    //     bodyStyles: {
+    //         fontSize: 8,
+    //     },
+    //     headStyles: {
+    //         fontSize: 8,
+    //         textColor: "#000",
+    //         fillColor: "#E8E5E5",
+    //     }
+    // })
     tableRows = []
     const pages = doc.internal.getNumberOfPages();
     const pageWidth = doc.internal.pageSize.width;
