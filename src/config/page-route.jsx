@@ -85,10 +85,10 @@ const routes = [
         component: () => <JenisPembayaran />,
     },
     {
-        path: "/master-jenis",
+        path: "/master-kategori",
         exact: true,
         title: "Data Jenis",
-        role: "master-jenis",
+        role: "master-kategori",
         component: () => <DataJenis />,
     },
     {

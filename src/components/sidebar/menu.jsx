@@ -10,10 +10,10 @@ const Menu = [
         icon: "fa fa-hdd",
         title: "Master",
         isShow: true,
-        role: ["master-jenis-pembayaran", "master-jenis"],
+        role: ["master-jenis-pembayaran", "master-kategori"],
         children: [
             { path: "/master-jenis-pembayaran", title: "Jenis Pembayaran", role: "master-jenis-pembayaran" },
-            { path: "/master-jenis", title: "Jenis Printing", role: "master-jenis" },
+            { path: "/master-kategori", title: "Kategori", role: "master-kategori" },
         ],
     },
     {
