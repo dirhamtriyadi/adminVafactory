@@ -17,6 +17,16 @@ const TabelOrderTracking = () => {
             sort: true
         },
         {
+            dataField: "order.name",
+            text: "Nama Order",
+            sort: true
+        },
+        {
+            dataField: "order.customer.name",
+            text: "Nama Customer",
+            sort: true
+        },
+        {
             dataField: "tracking.name",
             text: "Nama Tracking",
             sort: true
