@@ -17,6 +17,11 @@ const TabelOrderTransaction = () => {
       sort: true,
     },
     {
+      dataField: "user.name",
+      text: "Nama Penginput",
+      sort: true,
+    },
+    {
       dataField: "payment_method.name",
       text: "Metode Pembayaran",
       sort: true,
@@ -98,6 +103,7 @@ const TabelOrderTransaction = () => {
     let row = {
       id: list.id,
       order: list.order,
+      user: list.user,
       payment_method: list.payment_method,
       amount: list.amount,
       description: list.description,
