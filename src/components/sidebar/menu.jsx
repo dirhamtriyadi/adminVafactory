@@ -22,18 +22,19 @@ const Menu = [
         title: "Data Customer",
         role: "data-customer",
     },
-    {
-        path: "/data-barang",
-        icon: "fas fa-archive",
-        title: "Data Barang",
-        role: "data-barang",
-    },
+    // {
+    //     path: "/data-barang",
+    //     icon: "fas fa-archive",
+    //     title: "Data Barang",
+    //     role: "data-barang",
+    // },
     {
         path: "#",
         icon: "fas fa-store",
         title: "Penjualan",
-        role: ["penjualan", "lihat-penjualan"],
+        role: ["data-barang", "penjualan", "lihat-penjualan"],
         children: [
+            { path: "/data-barang", title: "Data Barang", role: "data-barang" },
             { path: "/penjualan", title: "Transaksi Penjualan", role: "penjualan" },
             { path: "/lihat-penjualan", title: "Lihat Penjualan", role: "lihat-penjualan" },
         ],
@@ -45,12 +46,12 @@ const Menu = [
         title: "Uang Kas",
         role: "uang-kas",
     },
-    {
-        path: "/data-users",
-        icon: "fas fa-users",
-        title: "Data Users",
-        role: "data-users",
-    },
+    // {
+    //     path: "/data-users",
+    //     icon: "fas fa-users",
+    //     title: "Data Users",
+    //     role: "data-users",
+    // },
 
     {
         path: "#",
