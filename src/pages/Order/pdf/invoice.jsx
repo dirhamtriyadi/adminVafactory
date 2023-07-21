@@ -125,6 +125,9 @@ const InvoiceOrder = (data = "") => {
     tableColumn = [
         [
             {
+                content: `Penerima`
+            },
+            {
                 content: `Keterangan`
             },
             {
@@ -138,7 +141,9 @@ const InvoiceOrder = (data = "") => {
     tableRows = []
     let total = 0
     data.orderTransaction.map((item) => {
+        console.log(item);
         let rows = [
+            item.user.name,
             item.description,
             item.payment_method.name,
             parseInt(item.amount).toLocaleString("kr-KO")

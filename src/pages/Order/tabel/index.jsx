@@ -84,6 +84,7 @@ const TabelOrders = () => {
             csvExport: false,
             headerClasses: "text-center",
             formatter: (rowcontent, row) => {
+                console.log(row);
                 return (
                     <div className="row text-center">
                         <div className="col-12 text-center">

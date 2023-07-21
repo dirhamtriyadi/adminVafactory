@@ -1,4 +1,4 @@
-import { masterActions, Swal, deleteData, putDataParams, utilityActions, ToastNotification, reset, postData } from "../../../components" 
+import { masterActions, Swal, deleteData, putDataParams, utilityActions, ToastNotification, reset, postData, getItem } from "../../../components" 
 
 export const simpanDataOrderTransaction = (data) => {
     return async (dispatch, getState) => {
@@ -6,10 +6,19 @@ export const simpanDataOrderTransaction = (data) => {
         const data = state.form.FormDataOrderTransaction?.values
         const isEdit = state.utility.isEdit
 
+        let hasil = {
+          order_id: data.order_id,
+          payment_method_id: data.payment_method_id,
+          user_id: getItem("userdata").id,
+          amount: Number(data.amount),
+          description: data.description,
+          date: data.date,
+        }
+
         dispatch(utilityActions.setLoading(true))
 
         isEdit
-            ? putDataParams("order-transactions/" + data.id, data)
+            ? putDataParams("order-transactions/" + data.id, hasil)
                 .then((res) => {
                     dispatch(utilityActions.setLoading(false))
                     if (res.data?.order_id?.[0]) {
@@ -41,7 +50,7 @@ export const simpanDataOrderTransaction = (data) => {
                     ToastNotification("info", "Edit data Order Transaction gagal, silahkan coba lagi !!!")
                     dispatch(utilityActions.setLoading(false))
                 })
-            : postData("order-transactions", data)
+            : postData("order-transactions", hasil)
                 .then((res) => {
                     dispatch(utilityActions.setLoading(false))
                     if (res.data?.order_id?.[0]) {
