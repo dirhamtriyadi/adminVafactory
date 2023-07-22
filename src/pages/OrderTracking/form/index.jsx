@@ -99,18 +99,6 @@ let FormDataOrderTracking = ({ pristine, submitting }) => {
             </div>
             <div className="col-12">
                 <Field
-                    name="status"
-                    component={ReanderSelect}
-                    options={[
-                        { value: 0, name: "Dalam Proses" },
-                        { value: 1, name: "Selesai" },
-                    ]}
-                    placeholder="Masukan Status"
-                    label="Status"
-                />
-            </div>
-            <div className="col-12">
-                <Field
                     name="date"
                     component={ReanderField}
                     type="datetime-local"
@@ -146,7 +134,6 @@ const maptostate = (state) => {
                 order_id: state.utility.getDataEdit.order?.id,
                 tracking_id: state.utility.getDataEdit.tracking?.id,
                 description: state.utility.getDataEdit.description,
-                status: state.utility.getDataEdit.status,
                 date: state.utility.getDataEdit.date,
             },
         };

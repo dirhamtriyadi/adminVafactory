@@ -1,5 +1,5 @@
 import {React, useEffect, masterActions, Tabel, utilityActions, useDispatch, selectorMaster, useSelector} from '../../../components';
-import { hapusDataOrderTracking, updateProsesOrderTracking } from '../redux';
+import { hapusDataOrderTracking } from '../redux';
 
 const TabelOrderTracking = () => {
     const dispatch = useDispatch();
@@ -37,11 +37,6 @@ const TabelOrderTracking = () => {
             sort: true
         },
         {
-            dataField: "status",
-            text: "Status",
-            sort: true
-        },
-        {
             dataField: "date",
             text: "Tanggal",
             sort: true
@@ -53,17 +48,6 @@ const TabelOrderTracking = () => {
                 return (
                     <div className="row text-center">
                         <div className="col-12 text-center">
-                            {
-                                row.status === "Dalam Proses" ?
-                                    <button
-                                        className="btn btn-success mr-2"
-                                        onClick={() => {
-                                            dispatch(updateProsesOrderTracking(row));
-                                        }}>
-                                        <i className="fa fa-check"></i>
-                                    </button>
-                                    : null
-                            }
                             <button
                                 className="btn btn-primary"
                                 onClick={() => {
