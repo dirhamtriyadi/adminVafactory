@@ -58,6 +58,7 @@ class DropdownProfile extends React.Component {
           <b className="caret"></b>
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu dropdown-menu-right" tag="ul">
+          <DropdownItem onClick={()=>window.location.href="/profile"}>Profile</DropdownItem>
           <DropdownItem onClick={()=>this.logout()}>Log Out</DropdownItem>
         </DropdownMenu>
       </Dropdown>

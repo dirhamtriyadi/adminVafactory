@@ -388,7 +388,7 @@ class App extends React.Component {
   };
 
   render() {
-    const isAuthenticated = getItem("userdata").access_token || [];
+    const isAuthenticated = getItem("token") || [];
     return isAuthenticated.length === 0 ? (
       <PageSettings.Provider value={this.state}>
         {localStorage.clear()}

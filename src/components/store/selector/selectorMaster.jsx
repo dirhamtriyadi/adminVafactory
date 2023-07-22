@@ -11,6 +11,7 @@ const getDataTracking = (state) => state.master.getDataTracking;
 const getDataOrders = (state) => state.master.getDataOrders;
 const getDataOrderTransaction = (state) => state.master.getDataOrderTransaction;
 const getDataOrderTracking = (state) => state.master.getDataOrderTracking;
+const getDataProfile = (state) => state.master.getDataProfile;
 
 const selectorMaster = {
     getDataCustomer,
@@ -26,6 +27,7 @@ const selectorMaster = {
     getDataOrders,
     getDataOrderTransaction,
     getDataOrderTracking,
+    getDataProfile,
 };
 
 export default selectorMaster;

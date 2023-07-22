@@ -17,6 +17,7 @@ import {
     Orders,
     OrderTransaction,
     OrderTracking,
+    Profile,
 } from "../pages";
 import LihatPenjualan from "../pages/Penjualan/LihatPenjualan";
 
@@ -157,6 +158,15 @@ const routes = [
         title: "Order Tracking",
         role: "order-tracking",
         component: () => <OrderTracking />,
+    },
+
+    // Profile
+    {
+        path: "/profile",
+        exact: true,
+        title: "Profile",
+        role: "profile",
+        component: () => <Profile />,
     },
 ];
 

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { React, withRouter, Route, getItem } from "../helpers";
 import Skeleton from "react-loading-skeleton";
+import { Profile } from "../../pages";
 
 import routes from "./../../config/page-route.jsx";
 import { PageSettings } from "./../../config/page-settings.js";
@@ -51,6 +52,13 @@ class Content extends React.Component {
             >
               {routes.map((route, index) => (
                 route.path === "/" || route.path === "/login" ? (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    component={route.component}
+                  />
+                ) : route.path === "/profile" ? (
                   <Route
                     key={index}
                     path={route.path}
