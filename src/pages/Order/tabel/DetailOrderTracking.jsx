@@ -21,11 +21,6 @@ const DetailOrderTracking = () => {
             sort: true
         },
         {
-            dataField: 'status',
-            text: 'Status',
-            sort: true
-        },
-        {
             dataField: 'date',
             text: 'Tanggal',
             sort: true
@@ -51,7 +46,6 @@ const DetailOrderTracking = () => {
             order_number: getDataEdit[0].order_number,
             tracking: list.tracking.name,
             description: list.description,
-            status: list.status === 1 ? 'Selesai' : 'Dalam Proses',
             date: list.date
         }
         return row
