@@ -40,8 +40,8 @@ let FormDataJenis = ({ pristine, submitting }) => {
             name="name"
             component={ReanderField}
             type="text"
-            label="Nama Jenis"
-            placeholder="Masukan Nama Jenis"
+            label="Nama Kategori"
+            placeholder="Masukan Nama Kategori"
           />
         </div>
         <div className="col-12">
