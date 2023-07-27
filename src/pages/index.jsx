@@ -5,7 +5,7 @@ const Dashboard = lazy(() => import("./Dashboard/dashboard"));
 const DashboardV1 = lazy(() => import("./Dashboard/dashboard-v1"));
 const Login = lazy(() => import("./Auth/index.jsx"));
 const JenisPembayaran = lazy(() => import("./DataMaster/JenisPembyaran"));
-const DataJenis = lazy(() => import("./DataMaster/DataJenis"));
+const DataKategori = lazy(() => import("./DataMaster/DataKategori"));
 const DataUsers = lazy(() => import("./ManageUsers/DataUsers"));
 const HakAkses = lazy(() => import("./ManageUsers/HakAkses"));
 const DataBarang = lazy(() => import("./Barang/DataBarang"));
@@ -33,7 +33,7 @@ export {
     JenisPembayaran,
     HakAkses,
     DataUsers,
-    DataJenis,
+    DataKategori,
 
     // Ade
     Tracking,

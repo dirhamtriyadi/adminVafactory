@@ -3,7 +3,7 @@ import { React } from "../components/helpers";
 import {
     DashboardV1,
     Dashboard,
-    DataJenis,
+    DataKategori,
     Login,
     DataUsers,
     HakAkses,
@@ -88,9 +88,9 @@ const routes = [
     {
         path: "/master-kategori",
         exact: true,
-        title: "Data Jenis",
+        title: "Data Kategori",
         role: "master-kategori",
-        component: () => <DataJenis />,
+        component: () => <DataKategori />,
     },
     {
         path: "/penjualan",
