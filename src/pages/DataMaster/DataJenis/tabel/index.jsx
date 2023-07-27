@@ -8,7 +8,7 @@ import {
   selectorMaster,
   useSelector
 } from "../../../../components";
-import { hapusDataJenis } from "../redux";
+import { hapusDataKategori } from "../redux";
 
 const TabelDataJenis = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const TabelDataJenis = () => {
   const columns = [
     {
       dataField: "name",
-      text: "Nama Jenis",
+      text: "Nama Kategori",
     },
     {
       dataField: "price",
@@ -50,7 +50,7 @@ const TabelDataJenis = () => {
               </button>
               </div>
             <div className="col-6 text-left">
-              <button onClick={()=> dispatch(hapusDataJenis(row))} className="btn btn-danger ml-2">
+              <button onClick={()=> dispatch(hapusDataKategori(row))} className="btn btn-danger ml-2">
                 <i className="fa fa-trash"></i>
               </button>
             </div>

@@ -11,7 +11,7 @@ import {
   useEffect,
   currencyMask
 } from "../../../../components";
-import {  simpanDataJenis } from "../redux";
+import {  simpanDataKategori } from "../redux";
 
 let FormDataJenis = ({ pristine, submitting }) => {
   const isEdit = useSelector(selectorUtility.isEdit);
@@ -68,7 +68,7 @@ let FormDataJenis = ({ pristine, submitting }) => {
           <button
             className="btn btn-primary"
             type="button"
-            onClick={() => dispatch(simpanDataJenis())}
+            onClick={() => dispatch(simpanDataKategori())}
             disabled={pristine || submitting || isLoading}
           >
             {isLoading ? (

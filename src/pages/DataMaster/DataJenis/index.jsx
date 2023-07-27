@@ -5,22 +5,22 @@ import {
   useSelector,
   selectorUtility,
 } from "../../../components";
-import FormDataJenis from "./form";
-import TabelDataJenis from "./tabel";
+import FormDataKategori from "./form";
+import TabelDataKategori from "./tabel";
 
-const DataJenis = () => {
+const DataKategori = () => {
   const isEdit = useSelector(selectorUtility.isEdit);
 
   return (
-    <PanelContent menu="Data Jenis" submenu="Data master">
-      <TabelDataJenis />
+    <PanelContent menu="Data Kategori" submenu="Data master">
+      <TabelDataKategori />
       <ModalGlobal
         size="P"
-        title={isEdit ? "Edit Data Data Jenis" : "Tambah Data Data Jenis"}
-        content={<FormDataJenis />}
+        title={isEdit ? "Edit Data Kategori" : "Tambah Data Kategori"}
+        content={<FormDataKategori />}
       />
     </PanelContent>
   );
 };
 
-export default DataJenis;
+export default DataKategori;
