@@ -36,7 +36,9 @@ export const simpanDataProfile = () => {
                 setItem("userdata", res.data[1]);
                 dispatch(reset("FormProfile"))
                 ToastNotification("success", "Berhasil mengedit data Profile")
-                // window.location.reload()
+                setTimeout(() => {
+                    window.location.reload()
+                }, 2000);
             })
             .catch((err) => {
                 ToastNotification("info", "Edit data Profile gagal, silahkan coba lagi !!!")
