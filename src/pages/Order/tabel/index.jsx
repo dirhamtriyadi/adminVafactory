@@ -98,7 +98,7 @@ const TabelOrders = () => {
                                 <i className="fa fa-print"></i>
                             </button>
                             <button
-                                onClick={() => showModal(row, true)}
+                                onClick={() => showModal(row, "EDIT")}
                                 className="btn btn-primary ml-2"
                             >
                                 <i className="fa fa-edit"></i>
