@@ -56,7 +56,7 @@ const TabelUsers = () => {
   };
   return (
     <Tabel
-      handleClick={() => showModalUser()}
+      handleClick={() => showModalUser(false)}
       keyField="id"
       tambahData={true}
       data={data[0] || []}

@@ -23,7 +23,7 @@ let FormDataUsers = ({ pristine, submitting }) => {
         {isEdit ? (
           <>
             <Field
-              name="_id"
+              name="id"
               component={HiidenFiled}
               type="hidden"
               label="id"
