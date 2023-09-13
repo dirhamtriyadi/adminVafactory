@@ -16,8 +16,11 @@ import {
     currencyMask,
 } from "../../../components";
 import { simpanDataOrderTracking } from "../redux";
+import BarcodeScannerComponent from "react-qr-barcode-scanner"
 
 let FormDataOrderTracking = ({ pristine, submitting }) => {
+    const [data, setData] = React.useState("Not Found");
+    const [scan, setScan] = React.useState(false);
     const dispatch = useDispatch();
     const dataOrder = useSelector(selectorMaster.getDataOrders || []);
     const dataTracking = useSelector(selectorMaster.getDataTracking || []);
@@ -66,7 +69,27 @@ let FormDataOrderTracking = ({ pristine, submitting }) => {
                     placeholder="Masukan Order Number"
                     label="Order Number"
                 />
+                <div>
+                    <button className="btn btn-primary" onClick={() => {
+                        setScan(!scan)
+                    }}>Scan</button>
+                </div>
             </div>
+            {
+                scan ? (
+                    <div className="col-12 text-center">
+                        <BarcodeScannerComponent
+                            width={400}
+                            height={400}
+                            onUpdate={(err, result) => {
+                            if (result) setData(result.text);
+                            else return;
+                            }}
+                        />
+                        <p>{data}</p>
+                    </div>
+                ) : null
+            }
             <div className="col-12">
                 <Field
                     name="tracking_id"

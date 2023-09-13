@@ -2,13 +2,13 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { getToday, getItem } from "../../../components";
 
-const InvoiceOrder = (data = "") => {
-    // console.log(data);
+const InvoiceOrder = (data = "", qr) => {
+    // console.log(data, qr);
     const doc = new jsPDF("p", "mm", [297, 210]);
     let tableRows = [];
     let tableColumn = [];
     let rows = []
-    let finalY = 40;
+    let finalY = 75;
     let y = 0;
 
     doc.setFontSize(15);
@@ -28,6 +28,7 @@ const InvoiceOrder = (data = "") => {
     );
     doc.text("Kabupaten Bandung, Jawa Barat 40395".slice(0, 40), 145, 25);
     doc.text("No Faktur         : " + data.order_number, 14, 30);
+    doc.addImage(qr, "PNG", 14, 37, 30, 30);
     doc.setFontSize(10);
     doc.setProperties({
         title: "INVOICE ORDER",
@@ -100,7 +101,7 @@ const InvoiceOrder = (data = "") => {
     // })
 
     doc.setFont(undefined, "bold");
-    doc.text("Order", 14, 37);
+    doc.text("Order", 14, 73);
     doc.autoTable({
         head: tableColumn,
         body: tableRows,

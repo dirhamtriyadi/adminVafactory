@@ -1,6 +1,7 @@
 import { React, useEffect, masterActions, Tabel, utilityActions, useDispatch, selectorMaster, useSelector } from '../../../components';
 import { hapusDataOrders } from '../redux';
 import InvoiceOrder from '../pdf/invoice';
+import {QRCodeCanvas} from "qrcode.react";
 
 const TabelOrders = () => {
     const dispatch = useDispatch();
@@ -12,6 +13,10 @@ const TabelOrders = () => {
     }, [dispatch]);
 
     const columns = [
+        {
+            dataField: "qr_code",
+            text: "QR Code",
+        },
         {
             dataField: "order_number",
             text: "No Order",
@@ -91,7 +96,10 @@ const TabelOrders = () => {
                             <button
                                 onClick={() => {
                                     // console.log("ini button",row);
-                                    InvoiceOrder(row)
+                                    const qrCodeCanvas = document.querySelector("#qr")
+                                    const qrCodeDataUri = qrCodeCanvas.toDataURL("image/png")
+                                    console.log(qrCodeDataUri);
+                                    InvoiceOrder(row, qrCodeCanvas)
                                 }}
                                 className="btn btn-secondary"
                             >
@@ -136,6 +144,7 @@ const TabelOrders = () => {
     let hasil = data.map((list) => {
         let row = {
             id: list.id,
+            qr_code: <QRCodeCanvas value={list.order_number} id='qr' />,
             order_number: list.order_number,
             user: list.user,
             customer: list.customer,
