@@ -29,7 +29,7 @@ const TabelCustomer = () => {
     },
     {
       dataField: "email",
-      text: "Enail",
+      text: "Email",
     },
     {
       dataField: "address",

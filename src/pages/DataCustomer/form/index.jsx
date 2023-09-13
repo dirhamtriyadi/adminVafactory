@@ -40,7 +40,7 @@ let FormDataCustomer = ({pristine, submitting}) => {
           name="name"
           component={ReanderField}
           type="text"
-          label="Nama Customer"
+          label="Nama Customer*"
           placeholder="Masukan Nama Customer"
         />
       </div>
