@@ -7,7 +7,8 @@ import {
   useDispatch,
   selectorMaster,
   useSelector,
-  getToday
+  getToday,
+  useState
 } from "../../../components";
 import { hapusUangKas } from "../redux";
 
@@ -99,14 +100,30 @@ const TabelUangkas = () => {
     dispatch(utilityActions.showModal());
     dispatch(utilityActions.isEdit(false));
   };
+  let uangMasuk = 0;
+  let uangKeluar = 0;
+  data.map((data) => {
+    if(data.cash_flow_type === "UANGMASUK"){
+      uangMasuk += data.amount
+      return data.amount
+    }else{
+      uangKeluar += data.amount
+      return data.amount
+    }
+  })
   return (
-    <Tabel
-      handleClick={() => showModalUangKas()}
-      keyField="id"
-      tambahData={true}
-      data={data}
-      columns={columns}
-    />
+    <>
+      <h2>Total uang masuk : <p className="text-green">{Number(uangMasuk).toLocaleString("kr-KO")}{" "}</p></h2>
+      <h2>Total uang keluar : <p className="text-red">{Number(uangKeluar).toLocaleString("kr-KO")}{" "}</p></h2>
+      
+      <Tabel
+        handleClick={() => showModalUangKas()}
+        keyField="id"
+        tambahData={true}
+        data={data}
+        columns={columns}
+      />
+    </>
   );
 };
 
