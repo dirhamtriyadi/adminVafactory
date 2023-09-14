@@ -94,7 +94,7 @@ const Dashboard = () => {
                 <p>Rp. {Number(uangCash || 0)?.toLocaleString("kr-KO")}</p>
               </div>
               <div className="stats-link">
-                <Link to="/order-transaction">
+                <Link to="/uang-kas">
                   View Detail <i className="fa fa-arrow-alt-circle-right"></i>
                 </Link>
               </div>
@@ -110,7 +110,7 @@ const Dashboard = () => {
                 <p>Rp. {Number(uangTransfer || 0)?.toLocaleString("kr-KO")}</p>
               </div>
               <div className="stats-link">
-                <Link to="/order-transaction">
+                <Link to="/uang-kas">
                   View Detail <i className="fa fa-arrow-alt-circle-right"></i>
                 </Link>
               </div>
