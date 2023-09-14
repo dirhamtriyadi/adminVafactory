@@ -23,25 +23,49 @@ const TabelUangkas = () => {
     {
       dataField: "user.name",
       text: "User Id",
+      sort: true,
+      style: function callback(cell, row, rowIndex, colIndex) {
+        // console.log(cell, row, rowIndex, colIndex);
+        return row.cash_flow_type === "UANGMASUK" ? { backgroundColor: "#00FF00" } : { backgroundColor: "#FF0000" };
+      }
     },
     {
       dataField: "transaction_date",
       text: "Tanggal",
-      sort: true
+      sort: true,
+      style: function callback(cell, row, rowIndex, colIndex) {
+        // console.log(cell, row, rowIndex, colIndex);
+        return row.cash_flow_type === "UANGMASUK" ? { backgroundColor: "#00FF00" } : { backgroundColor: "#FF0000" };
+      }
     },
     
     {
       dataField: "description",
       text: "Deskripsi",
+      sort: true,
+      style: function callback(cell, row, rowIndex, colIndex) {
+        // console.log(cell, row, rowIndex, colIndex);
+        return row.cash_flow_type === "UANGMASUK" ? { backgroundColor: "#00FF00" } : { backgroundColor: "#FF0000" };
+      }
     },
     {
       dataField: "cash_flow_type",
       text: "Type",
+      sort: true,
+      style: function callback(cell, row, rowIndex, colIndex) {
+        // console.log(cell, row, rowIndex, colIndex);
+        return row.cash_flow_type === "UANGMASUK" ? { backgroundColor: "#00FF00" } : { backgroundColor: "#FF0000" };
+      }
     },
     {
       dataField: "amount",
       text: "Nominal",
       headerClasses : "text-right",
+      sort: true,
+      style: function callback(cell, row, rowIndex, colIndex) {
+        // console.log(cell, row, rowIndex, colIndex);
+        return row.cash_flow_type === "UANGMASUK" ? { backgroundColor: "#00FF00" } : { backgroundColor: "#FF0000" };
+      },
       formatter: (cell) => {
         return (
           <div className="text-right">
@@ -57,6 +81,7 @@ const TabelUangkas = () => {
       csvExport: false,
       headerClasses: "text-center",
       formatter: (rowcontent, row) => {
+        // console.log(row.cash_flow_type);
         return (
           <div className="row text-center">
             <div className={row.transaction_date === getToday() ? "col-12" : "d-none" }>
