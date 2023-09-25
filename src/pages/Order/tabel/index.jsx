@@ -13,10 +13,10 @@ const TabelOrders = () => {
     }, [dispatch]);
 
     const columns = [
-        {
-            dataField: "qr_code",
-            text: "QR Code",
-        },
+        // {
+        //     dataField: "qr_code",
+        //     text: "QR Code",
+        // },
         {
             dataField: "order_number",
             text: "No Order",
@@ -96,10 +96,12 @@ const TabelOrders = () => {
                             <button
                                 onClick={() => {
                                     // console.log("ini button",row);
-                                    const qrCodeCanvas = document.querySelector("#qr")
-                                    const qrCodeDataUri = qrCodeCanvas.toDataURL("image/png")
-                                    console.log(qrCodeDataUri);
-                                    InvoiceOrder(row, qrCodeCanvas)
+                                    // qr code
+                                    // const qrCodeCanvas = document.querySelector("#qr")
+                                    // const qrCodeDataUri = qrCodeCanvas.toDataURL("image/png")
+                                    // console.log(qrCodeDataUri);
+                                    // InvoiceOrder(row, qrCodeCanvas)
+                                    InvoiceOrder(row)
                                 }}
                                 className="btn btn-secondary"
                             >
@@ -144,7 +146,7 @@ const TabelOrders = () => {
     let hasil = data.map((list) => {
         let row = {
             id: list.id,
-            qr_code: <QRCodeCanvas value={list.order_number} id='qr' />,
+            // qr_code: <QRCodeCanvas value={list.order_number} id='qr' />,
             order_number: list.order_number,
             user: list.user,
             customer: list.customer,
