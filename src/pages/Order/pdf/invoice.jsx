@@ -61,12 +61,12 @@ const InvoiceOrder = (data = "", qr) => {
             {
                 content: `Nama Order`
             },
-            {
-                content: `Deskripsi`
-            },
-            {
-                content: `Tanggal Order`
-            }
+            // {
+            //     content: `Deskripsi`
+            // },
+            // {
+            //     content: `Tanggal Order`
+            // }
         ]
     ]
 
@@ -80,8 +80,8 @@ const InvoiceOrder = (data = "", qr) => {
         parseInt(data.discount).toLocaleString("kr-KO"),
         parseInt(data.subtotal).toLocaleString("kr-KO"),
         data.name,
-        data.description,
-        data.order_date
+        // data.description,
+        // data.order_date
     ]
     tableRows.push(rows)
     // data.map((item) => {
@@ -135,6 +135,9 @@ const InvoiceOrder = (data = "", qr) => {
                 content: `Metode Pembayaran`
             },
             {
+                content: `Tanggal Pembayaran`
+            },
+            {
                 content: `Jumlah Pembayaran`
             }
         ]
@@ -147,6 +150,7 @@ const InvoiceOrder = (data = "", qr) => {
             item.user.name,
             item.description,
             item.payment_method.name,
+            item.date,
             parseInt(item.amount).toLocaleString("kr-KO")
         ]
         tableRows.push(rows)
