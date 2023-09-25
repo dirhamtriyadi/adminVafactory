@@ -18,8 +18,10 @@ const InvoiceOrder = (data = "", qr) => {
     doc.setFontSize(20);
     doc.text("VA Factory", 145, 15);
     doc.setFontSize(8);
-    doc.text("Tanggal            : " + data.order_date, 14, 20);
-    doc.text("Nama               : " + data.customer.name, 14, 25);
+    doc.text("Tanggal", 14, 20);
+    doc.text(": "+ data.order_date, 40, 20);
+    doc.text("Nama Customer", 14, 25);
+    doc.text(": " + data.customer.name, 40, 25);
     doc.text(
         "Jl. Raya Cicalengka - Majalaya, Cikuya, Kec. Cicalengka, Kabupaten Bandung, Jawa Barat 40395".slice(
             0,
@@ -29,7 +31,8 @@ const InvoiceOrder = (data = "", qr) => {
         20
     );
     doc.text("Kabupaten Bandung, Jawa Barat 40395".slice(0, 40), 145, 25);
-    doc.text("No Faktur         : " + data.order_number, 14, 30);
+    doc.text("No Faktur", 14, 30);
+    doc.text(": " + data.order_number, 40, 30);
     // doc.addImage(qr, "PNG", 14, 37, 30, 30);
     doc.setFontSize(10);
     doc.setProperties({
@@ -40,7 +43,7 @@ const InvoiceOrder = (data = "", qr) => {
     tableColumn = [
         [
             {
-                content: `Nama Customer`,
+                content: `Nama Order`,
             },
             {
                 content: `Kategori`
@@ -58,10 +61,7 @@ const InvoiceOrder = (data = "", qr) => {
                 content: `Diskon`
             },
             {
-                content: `Sub Total`
-            },
-            {
-                content: `Nama Order`
+                content: `Total`
             },
             // {
             //     content: `Deskripsi`
@@ -74,14 +74,13 @@ const InvoiceOrder = (data = "", qr) => {
 
     // Body Table
     rows = [
-        data.customer.name,
+        data.name,
         data.print_type.name,
         data.qty,
         parseInt(data.price).toLocaleString("kr-KO"),
         parseInt(data.total).toLocaleString("kr-KO"),
         parseInt(data.discount).toLocaleString("kr-KO"),
         parseInt(data.subtotal).toLocaleString("kr-KO"),
-        data.name,
         // data.description,
         // data.order_date
     ]
