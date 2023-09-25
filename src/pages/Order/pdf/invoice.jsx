@@ -8,7 +8,9 @@ const InvoiceOrder = (data = "", qr) => {
     let tableRows = [];
     let tableColumn = [];
     let rows = []
-    let finalY = 75;
+    // Barcode
+    // let finalY = 75;
+    let finalY = 37;
     let y = 0;
 
     doc.setFontSize(15);
@@ -28,7 +30,7 @@ const InvoiceOrder = (data = "", qr) => {
     );
     doc.text("Kabupaten Bandung, Jawa Barat 40395".slice(0, 40), 145, 25);
     doc.text("No Faktur         : " + data.order_number, 14, 30);
-    doc.addImage(qr, "PNG", 14, 37, 30, 30);
+    // doc.addImage(qr, "PNG", 14, 37, 30, 30);
     doc.setFontSize(10);
     doc.setProperties({
         title: "INVOICE ORDER",
@@ -101,11 +103,13 @@ const InvoiceOrder = (data = "", qr) => {
     // })
 
     doc.setFont(undefined, "bold");
-    doc.text("Order", 14, 73);
+    // finalY = doc.autoTableEndPosY() + 3
+    doc.text("Order", 14, finalY);
+    y = finalY + 3
     doc.autoTable({
         head: tableColumn,
         body: tableRows,
-        startY: finalY,
+        startY: y,
         theme: "plain",
         rowPageBreak: "avoid",
         margin: { top: 10 },
@@ -158,10 +162,10 @@ const InvoiceOrder = (data = "", qr) => {
     })
     let totalFooter = [
         {
-            colSpan: 2,
+            colSpan: 4,
             content: `Total`,
             styles: {
-                halign: "center",
+                halign: "right",
                 fontStyle: "bold",
             }
         },
@@ -172,10 +176,10 @@ const InvoiceOrder = (data = "", qr) => {
     tableRows.push(totalFooter)
     let sisaFooter = [
         {
-            colSpan: 2,
+            colSpan: 4,
             content: `Sisa Tagihan`,
             styles: {
-                halign: "center",
+                halign: "right",
                 fontStyle: "bold",
             }
         },
