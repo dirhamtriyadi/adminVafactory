@@ -1,6 +1,6 @@
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { getToday, getItem } from "../../../components";
+import { getToday, getItem, momen } from "../../../components";
 
 const InvoiceOrder = (data = "", qr) => {
     // console.log(data, qr);
@@ -276,9 +276,9 @@ const InvoiceOrder = (data = "", qr) => {
     //     }
     // })
     tableRows = []
-    finalY = doc.autoTableEndPosY() + 3
+    finalY = doc.autoTableEndPosY() + 10
     doc.setFont(undefined, "normal");
-    doc.text("Bandung, "+getToday(), 196, finalY, { align: "right" });
+    doc.text("Bandung, "+ momen(getToday()).format("LL"), 196, finalY, { align: "right" });
     finalY += 30
     doc.text(user.name, 196, finalY, { align: "right" });
     const pages = doc.internal.getNumberOfPages();

@@ -40,6 +40,8 @@ import SortableTree, {
   removeNodeAtPath,
 } from "react-sortable-tree";
 import images404 from "../../assets/img/404.png"
+import momen from "moment";
+import "moment/locale/id";
 const currencyMask = createNumberMask({
   prefix: "Rp. ",
   locale: "kr-KO",
@@ -109,4 +111,5 @@ export {
   PanelHeader,
   PanelBody,
   Avatar,
+  momen,
 };
