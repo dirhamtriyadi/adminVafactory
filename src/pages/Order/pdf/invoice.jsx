@@ -4,6 +4,7 @@ import { getToday, getItem } from "../../../components";
 
 const InvoiceOrder = (data = "", qr) => {
     // console.log(data, qr);
+    const user = getItem("userdata");
     const doc = new jsPDF("p", "mm", [297, 210]);
     let tableRows = [];
     let tableColumn = [];
@@ -275,6 +276,11 @@ const InvoiceOrder = (data = "", qr) => {
     //     }
     // })
     tableRows = []
+    finalY = doc.autoTableEndPosY() + 3
+    doc.setFont(undefined, "normal");
+    doc.text("Bandung, "+getToday(), 196, finalY, { align: "right" });
+    finalY += 30
+    doc.text(user.name, 196, finalY, { align: "right" });
     const pages = doc.internal.getNumberOfPages();
     const pageWidth = doc.internal.pageSize.width;
     const pageHeight = doc.internal.pageSize.height;
