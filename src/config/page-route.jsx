@@ -2,7 +2,8 @@ import { React } from "../components/helpers";
 
 import {
     DashboardV1,
-    DataJenis,
+    Dashboard,
+    DataKategori,
     Login,
     DataUsers,
     HakAkses,
@@ -16,6 +17,7 @@ import {
     Orders,
     OrderTransaction,
     OrderTracking,
+    Profile,
 } from "../pages";
 import LihatPenjualan from "../pages/Penjualan/LihatPenjualan";
 
@@ -24,19 +26,22 @@ const routes = [
         path: "/",
         title: "Login",
         exact: true,
+        role: "login",
         component: () => <Login />,
     },
     {
         path: "/login",
         title: "Login",
         exact: true,
+        role: "login",
         component: () => <Login />,
     },
     {
         path: "/dashboard",
         exact: true,
         title: "Dashboard V1",
-        component: () => <DashboardV1 />,
+        role: "dashboard",
+        component: () => <Dashboard />,
     },
 
     // Uang Kas
@@ -45,6 +50,7 @@ const routes = [
         path: "/uang-kas",
         exact: true,
         title: "Uang Kas",
+        role: "uang-kas",
         component: () => <UangKas />,
     },
 
@@ -53,18 +59,21 @@ const routes = [
         path: "/data-users",
         exact: true,
         title: "Data User",
+        role: "data-users",
         component: () => <DataUsers />,
     },
     {
         path: "/hak-akses-users",
         exact: true,
         title: "Hak Akses User",
+        role: "hak-akses-users",
         component: () => <HakAkses />,
     },
     {
         path: "/data-barang",
         exact: true,
         title: "Data Barang",
+        role: "data-barang",
         component: () => <DataBarang />,
     },
 
@@ -73,24 +82,28 @@ const routes = [
         path: "/master-jenis-pembayaran",
         exact: true,
         title: "Master Jenis Pembayaran",
+        role: "master-jenis-pembayaran",
         component: () => <JenisPembayaran />,
     },
     {
-        path: "/master-jenis",
+        path: "/master-kategori",
         exact: true,
-        title: "Data Jenis",
-        component: () => <DataJenis />,
+        title: "Data Kategori",
+        role: "master-kategori",
+        component: () => <DataKategori />,
     },
     {
         path: "/penjualan",
         exact: true,
         title: "Penjualan",
+        role: "penjualan",
         component: () => <Penjualan />,
     },
     {
         path: "/lihat-penjualan",
         exact: true,
         title: "Lihat Penjualan",
+        role: "lihat-penjualan",
         component: () => <LihatPenjualan />,
     },
 
@@ -98,6 +111,7 @@ const routes = [
         path: "/data-customer",
         exact: true,
         title: "Data Customer",
+        role: "data-customer",
         component: () => <DataCustomer />,
     },
 
@@ -105,6 +119,7 @@ const routes = [
         path: "/laporan-uang-kas",
         exact: true,
         title: "Laporan Uang kas",
+        role: "laporan-uang-kas",
         component: () => <LaporanUangKas />,
     },
 
@@ -114,6 +129,7 @@ const routes = [
         path: "/tracking",
         exact: true,
         title: "Tracking",
+        role: "tracking",
         component: () => <Tracking />,
     },
 
@@ -122,6 +138,7 @@ const routes = [
         path: "/orders",
         exact: true,
         title: "Orders",
+        role: "orders",
         component: () => <Orders />,
     },
 
@@ -130,6 +147,7 @@ const routes = [
         path: "/order-transaction",
         exact: true,
         title: "Order Transaction",
+        role: "order-transaction",
         component: () => <OrderTransaction />,
     },
 
@@ -138,7 +156,17 @@ const routes = [
         path: "/order-tracking",
         exact: true,
         title: "Order Tracking",
+        role: "order-tracking",
         component: () => <OrderTracking />,
+    },
+
+    // Profile
+    {
+        path: "/profile",
+        exact: true,
+        title: "Profile",
+        role: "profile",
+        component: () => <Profile />,
     },
 ];
 

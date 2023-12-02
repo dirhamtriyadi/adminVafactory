@@ -23,7 +23,7 @@ let FormDataUsers = ({ pristine, submitting }) => {
         {isEdit ? (
           <>
             <Field
-              name="_id"
+              name="id"
               component={HiidenFiled}
               type="hidden"
               label="id"
@@ -33,7 +33,7 @@ let FormDataUsers = ({ pristine, submitting }) => {
         ) : null}
         <div className="col-12">
           <Field
-            name="nama"
+            name="name"
             component={ReanderField}
             type="text"
             label="Nama"
@@ -61,17 +61,11 @@ let FormDataUsers = ({ pristine, submitting }) => {
         </div>
         <div className="col-12">
           <Field
-            name="level"
-            component={ReanderSelect}
-            options={[
-              {
-                value: "ADMIN",
-                name: "ADMIN",
-              },
-            ]}
-            type="text"
-            label="Level"
-            placeholder="Masukan Level"
+            name="password_confirmation"
+            component={ReanderField}
+            type="password"
+            label="Konfirmasi Password"
+            placeholder="Masukan Konfirmasi Password"
           />
         </div>
         <div className="col-12 text-right">
@@ -96,8 +90,20 @@ let FormDataUsers = ({ pristine, submitting }) => {
   );
 };
 
+const maptostate = (state) => {
+  if (state.utility.getDataEdit !== null) {
+    return {
+      initialValues: {
+        id: state.utility.getDataEdit.id,
+        name: state.utility.getDataEdit.name,
+        email: state.utility.getDataEdit.email,
+      },
+    };
+  }
+}
+
 FormDataUsers = reduxForm({
   form: "FormDataUsers",
   enableReinitialize: true,
 })(FormDataUsers);
-export default connect(null)(FormDataUsers);
+export default connect(maptostate)(FormDataUsers);

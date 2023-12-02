@@ -1,6 +1,6 @@
 import { masterActions,Swal,deleteData, putDataParams, utilityActions,ToastNotification,reset,postData } from "../../../../components";
 
-export const simpanDataJenis = () => {
+export const simpanDataKategori = () => {
     return async (dispatch, getState) => {
         const state = getState();
         const data = state.form.FormDataJenis?.values;
@@ -45,7 +45,7 @@ export const simpanDataJenis = () => {
       };
 }
 
-export const hapusDataJenis = (row) => {
+export const hapusDataKategori = (row) => {
     return async (dispatch, getState) => {
       Swal.fire({
         // title: "Anda Yakin !!",
@@ -53,7 +53,7 @@ export const hapusDataJenis = (row) => {
         html:
           "Apakah Anda Yakin Ingin " +
           "Menghapus " +
-          "<h1><b>Jenis  " +
+          "<h1><b>Kategori  " +
           row.name +
           "</b> ini ?</h1>",
         icon: "warning",

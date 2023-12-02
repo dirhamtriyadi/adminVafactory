@@ -25,14 +25,14 @@ export const simpanDataCustomer = () => {
               ToastNotification("info", res.data?.name?.[0]);
               return false;
             }
-            if (res.data?.phone?.[0]) {
-              ToastNotification("info", res.data?.phone?.[0]);
-              return false;
-            }
-            if (res.data?.email?.[0]) {
-              ToastNotification("info", res.data?.email?.[0]);
-              return false;
-            }
+            // if (res.data?.phone?.[0]) {
+            //   ToastNotification("info", res.data?.phone?.[0]);
+            //   return false;
+            // }
+            // if (res.data?.email?.[0]) {
+            //   ToastNotification("info", res.data?.email?.[0]);
+            //   return false;
+            // }
            
             dispatch(masterActions.getDataCustomer());
             dispatch(utilityActions.hideModal());
@@ -53,14 +53,14 @@ export const simpanDataCustomer = () => {
               ToastNotification("info", res.data?.name?.[0]);
               return false;
             }
-            if (res.data?.phone?.[0]) {
-              ToastNotification("info", res.data?.phone?.[0]);
-              return false;
-            }
-            if (res.data?.email?.[0]) {
-              ToastNotification("info", res.data?.email?.[0]);
-              return false;
-            }
+            // if (res.data?.phone?.[0]) {
+            //   ToastNotification("info", res.data?.phone?.[0]);
+            //   return false;
+            // }
+            // if (res.data?.email?.[0]) {
+            //   ToastNotification("info", res.data?.email?.[0]);
+            //   return false;
+            // }
            
             // console.log(res.data.name[0])
 
@@ -70,7 +70,7 @@ export const simpanDataCustomer = () => {
             ToastNotification("success", "Berhasil menambahan data customer");
           })
           .catch((err) => {
-            console.log(err)
+            // console.log(err)
             ToastNotification(
               "info",
               "Penambahan data customer gagal, silahkan coba lagi !!!"

@@ -9,6 +9,7 @@ import { Field, reduxForm, formValueSelector ,reset} from "redux-form";
 import {
   ReanderField,
   ReanderSelect,
+  ReanderTextArea,
   HiidenFiled,
   InputGroup,
 } from "../../components/helpers/field";
@@ -39,6 +40,8 @@ import SortableTree, {
   removeNodeAtPath,
 } from "react-sortable-tree";
 import images404 from "../../assets/img/404.png"
+import momen from "moment";
+import "moment/locale/id";
 const currencyMask = createNumberMask({
   prefix: "Rp. ",
   locale: "kr-KO",
@@ -96,6 +99,7 @@ export {
   ModalGlobal,
   ReanderField,
   ReanderSelect,
+  ReanderTextArea,
   formValueSelector,
   Component,
   connect,
@@ -107,4 +111,5 @@ export {
   PanelHeader,
   PanelBody,
   Avatar,
+  momen,
 };

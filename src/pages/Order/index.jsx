@@ -33,7 +33,7 @@ const Orders = () => {
       <ModalGlobal
         size="P"
         // title={isEdit ? "Edit Data Orders" : "Tambah Data Orders"}
-        title={showModalBanyak === "DetailOrder" ? "Detail Order" : isEdit ? "Edit Data Orders" : "Tambah Data Orders"}
+        title={showModalBanyak === "DetailOrder" ? "Detail Order" : showModalBanyak === "OrderTransaction" ? "Order Transaction" : showModalBanyak === "OrderTracking" ? "Order Tracking" : isEdit ? "Edit Data Orders" : "Tambah Data Orders"}
         content={<ContentModal />}
       />
     </PanelContent>

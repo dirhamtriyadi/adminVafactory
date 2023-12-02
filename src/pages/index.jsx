@@ -1,16 +1,18 @@
 import { lazy } from "react";
 const LaporanUangKas = lazy(() => import("./Laporan/LaporanUangKas"));
 const UangKas = lazy(() => import("./UangKas"));
+const Dashboard = lazy(() => import("./Dashboard/dashboard"));
 const DashboardV1 = lazy(() => import("./Dashboard/dashboard-v1"));
 const Login = lazy(() => import("./Auth/index.jsx"));
 const JenisPembayaran = lazy(() => import("./DataMaster/JenisPembyaran"));
-const DataJenis = lazy(() => import("./DataMaster/DataJenis"));
+const DataKategori = lazy(() => import("./DataMaster/DataKategori"));
 const DataUsers = lazy(() => import("./ManageUsers/DataUsers"));
 const HakAkses = lazy(() => import("./ManageUsers/HakAkses"));
 const DataBarang = lazy(() => import("./Barang/DataBarang"));
 const Penjualan = lazy(() => import("./Penjualan/TransaksiPenjualan"));
 const DataCustomer = lazy(() => import("./DataCustomer"));
 const LihatPenjualan = lazy(() => import("./Penjualan/LihatPenjualan"));
+const Profile = lazy(() => import("./Profile"));
 
 // Ade
 const Tracking = lazy(() => import("./Tracking"));
@@ -24,17 +26,19 @@ export {
     DataCustomer,
     Penjualan,
     DataBarang,
+    Dashboard,
     DashboardV1,
     UangKas,
     Login,
     JenisPembayaran,
     HakAkses,
     DataUsers,
-    DataJenis,
+    DataKategori,
 
     // Ade
     Tracking,
     Orders,
     OrderTransaction,
     OrderTracking,
+    Profile,
 };

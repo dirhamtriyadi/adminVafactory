@@ -45,15 +45,15 @@ let Layout1 = ({ handleSubmit,Loading }) => {
                   : databarang[0].map((list) => {
                       let row = {
                         value: list.code,
-                        name: list.name,
+                        name: list.code + " - " + list.name,
                       };
                       return row;
                     })
               }
               type="text"
               onChange={(e) => dispatch(cariNamaBarang(e))}
-              label="Kode Data Barang"
-              placeholder="Masukan Kode Barang"
+              label="Kode Data Barang / Nama Barang"
+              placeholder="Masukan Kode Barang / Nama Barang"
             />
           </div>
           <div className="col-3">

@@ -1,7 +1,7 @@
-import {React, Tabel, selectorUtility, useDispatch, useSelector} from "../../../components"
+import {React, Tabel, selectorUtility, useDispatch, useSelector, utilityActions} from "../../../components"
 
 const DetailOrderTracking = () => {
-    const dispacth = useDispatch()
+    const dispatch = useDispatch()
     const getDataEdit = useSelector(selectorUtility.getDataEdit)
 
     const columns = [
@@ -21,30 +21,38 @@ const DetailOrderTracking = () => {
             sort: true
         },
         {
-            dataField: 'status',
-            text: 'Status',
-            sort: true
-        },
-        {
             dataField: 'date',
             text: 'Tanggal',
             sort: true
-        }
+        },
     ]
+
+    const showModal = (row, isEdit) => {
+        // console.log(row);
+        // console.log(isEdit);
+        dispatch(utilityActions.getDataEdit(row))
+        dispatch(utilityActions.showModalBanyak(
+            isEdit === "TAMBAHORDERTRACKING" ? "TAMBAHORDERTRACKING" : "hehe",
+        ))
+        if (isEdit === "TAMBAHORDERTRACKING") {
+            dispatch(utilityActions.setLoading(false))
+        }
+        dispatch(utilityActions.showModal())
+        dispatch(utilityActions.isEdit("TAMBAHORDERTRACKING"))
+    }
 
     let hasil = getDataEdit[0].orderTracking.map((list, index) => {
         let row = {
             order_number: getDataEdit[0].order_number,
             tracking: list.tracking.name,
             description: list.description,
-            status: list.status,
             date: list.date
         }
         return row
     })
 
   return (
-    <Tabel keyField="id" tambahData={true} columns={columns} data={hasil || []} />
+    <Tabel keyField="id" tambahData={false} columns={columns} data={hasil || []} />
   )
 }
 

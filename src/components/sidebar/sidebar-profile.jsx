@@ -40,7 +40,7 @@ class SidebarProfile extends React.Component {
                 </div>
                 <div className="info">
                  {getItem('userdata').name}
-                  <small>Level Admin</small>
+                  {/* <small>Level Admin</small> */}
                 </div>
               </Link>
             </li>

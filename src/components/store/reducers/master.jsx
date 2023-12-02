@@ -1,6 +1,8 @@
 import {
     GET_DATA_CASH,
+    GET_DATA_CASH_ALL,
     GET_DATA_CUSTOMER,
+    GET_DATA_USERS,
     GET_DATA_JENIS,
     GET_DATA_JENIS_PEMBAYARAN,
     GET_DATA_PRODUK,
@@ -8,6 +10,7 @@ import {
     GET_DATA_ORDERS,
     GET_DATA_ORDER_TRANSACTION,
     GET_DATA_ORDER_TRACKING,
+    GET_DATA_PROFILE,
 } from "../actions/master_action";
 
 const initialState = {
@@ -15,13 +18,16 @@ const initialState = {
     getDataKenis: [],
     getDataProduk: [],
     getDataCash: [],
+    getDataCashAll: [],
     getDataCustomer: [],
+    getDataUsers: [],
 
     // Ade
     getDataTracking: [],
     getDataOrders: [],
     getDataOrderTransaction: [],
     getDataOrderTracking: [],
+    getDataProfile: [],
 };
 
 const master = (state = initialState, actions) => {
@@ -35,6 +41,11 @@ const master = (state = initialState, actions) => {
             return {
                 ...state,
                 getDataCash: actions.payload.data,
+            };
+        case GET_DATA_CASH_ALL:
+            return {
+                ...state,
+                getDataCashAll: actions.payload.data,
             };
         case GET_DATA_PRODUK:
             return {
@@ -50,6 +61,11 @@ const master = (state = initialState, actions) => {
             return {
                 ...state,
                 getDataJenisPembayaran: actions.payload.data,
+            };
+        case GET_DATA_USERS:
+            return {
+                ...state,
+                getDataUsers: actions.payload.data,
             };
 
         // Ade
@@ -73,7 +89,11 @@ const master = (state = initialState, actions) => {
                 ...state,
                 getDataOrderTracking: actions.payload.data,
             };
-
+        case GET_DATA_PROFILE:
+            return {
+                ...state,
+                getDataProfile: actions.payload.data,
+            };
         default:
             return state;
     }
