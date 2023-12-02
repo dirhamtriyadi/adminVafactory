@@ -1,5 +1,6 @@
 import React from "react";
 import SelectSearch from "react-select-search";
+import Select from "react-select";
 
 export const ReanderTextArea = ({
   input,
@@ -236,6 +237,52 @@ export const ReanderSelect = ({
         options={options}
      
       /> */}
+
+    {touched &&
+      ((error && (
+        <ul className="parsley-errors-list filled">
+          <li className="parsley-required"> {error}.</li>
+        </ul>
+      )) ||
+        (warning && <p>{warning}</p>))}
+  </div>
+);
+
+export const ReanderMultiSelect = ({
+  input,
+  label,
+  readOnly,
+  placeholder,
+  options,
+  id,
+  disabled,
+  tabIndex,
+  meta: { touched, error, warning },
+}) => (
+  <div className="form-group">
+    <label htmlFor="" className="text-black">
+      {label}
+    </label>
+    <Select
+      {...input}
+      isMulti
+      onChange={value => input.onChange(value)}
+      onBlur={() => input.onBlur(input.value)}
+      autoComplete="off"
+      onInputKeyDown={(event) => {
+        if (event.key === "Enter") {
+          event.preventDefault(); //<===== This stops the form from being submitted
+        } else {
+        }
+      }}
+      id={id}
+      readOnly={readOnly}
+      search
+      tabIndex={tabIndex}
+      disabled={disabled}
+      placeholder={placeholder}
+      options={options}
+    />
 
     {touched &&
       ((error && (

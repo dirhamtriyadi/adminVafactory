@@ -6,7 +6,7 @@ const DetailOrder = () => {
   const getDataEdit = useSelector(selectorUtility.getDataEdit)
   const dataFilter = getDataOrders.filter((list) => list.id === getDataEdit.id)
 
-  console.log(dataFilter);
+  // console.log(dataFilter);
 
   const showModal = (row, isEdit) => {
     dispatch(utilityActions.getDataEdit(row))

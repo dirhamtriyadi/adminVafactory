@@ -11,7 +11,7 @@ import {
   useEffect,
   currencyMask
 } from "../../../../components";
-import {  simpanDataJenis } from "../redux";
+import {  simpanDataKategori } from "../redux";
 
 let FormDataJenis = ({ pristine, submitting }) => {
   const isEdit = useSelector(selectorUtility.isEdit);
@@ -40,8 +40,8 @@ let FormDataJenis = ({ pristine, submitting }) => {
             name="name"
             component={ReanderField}
             type="text"
-            label="Nama Jenis"
-            placeholder="Masukan Nama Jenis"
+            label="Nama Kategori"
+            placeholder="Masukan Nama Kategori"
           />
         </div>
         <div className="col-12">
@@ -68,7 +68,7 @@ let FormDataJenis = ({ pristine, submitting }) => {
           <button
             className="btn btn-primary"
             type="button"
-            onClick={() => dispatch(simpanDataJenis())}
+            onClick={() => dispatch(simpanDataKategori())}
             disabled={pristine || submitting || isLoading}
           >
             {isLoading ? (

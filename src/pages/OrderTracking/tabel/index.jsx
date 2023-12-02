@@ -17,6 +17,16 @@ const TabelOrderTracking = () => {
             sort: true
         },
         {
+            dataField: "order.name",
+            text: "Nama Order",
+            sort: true
+        },
+        {
+            dataField: "order.customer.name",
+            text: "Nama Customer",
+            sort: true
+        },
+        {
             dataField: "tracking.name",
             text: "Nama Tracking",
             sort: true
@@ -24,11 +34,6 @@ const TabelOrderTracking = () => {
         {
             dataField: "description",
             text: "Keterangan",
-            sort: true
-        },
-        {
-            dataField: "status",
-            text: "Status",
             sort: true
         },
         {
@@ -79,7 +84,7 @@ const TabelOrderTracking = () => {
             order: item.order,
             tracking: item.tracking,
             description: item.description,
-            status: item.status === 1 ? "Dalam Proses" : "Selesai",
+            status: item.status === 0 ? "Dalam Proses" : "Selesai",
             date: item.date,
         };
         return row;

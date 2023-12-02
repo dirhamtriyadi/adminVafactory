@@ -5,6 +5,7 @@ import FormDataOrderTracking from './form'
 
 const OrderTracking = () => {
   const isEdit = useSelector(selectorUtility.isEdit)
+
   return (
     <PanelContent menu="Order Tracking">
         <TabelOrderTracking />

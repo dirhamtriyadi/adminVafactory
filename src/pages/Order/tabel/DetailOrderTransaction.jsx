@@ -1,7 +1,7 @@
-import {React, Tabel, selectorUtility, useDispatch, useSelector} from "../../../components"
+import {React, Tabel, selectorUtility, useDispatch, useSelector, utilityActions} from "../../../components"
 
 const DetailOrderTransaction = () => {
-    const dispacth = useDispatch()
+    const dispatch = useDispatch()
     const getDataEdit = useSelector(selectorUtility.getDataEdit)
 
     const columns = [
@@ -27,7 +27,7 @@ const DetailOrderTransaction = () => {
             dataField: 'description',
             text: 'Keterangan',
             sort: true
-        }
+        },
     ]
 
     let hasil = getDataEdit[0].orderTransaction.map((list, index) => {
@@ -67,7 +67,7 @@ const DetailOrderTransaction = () => {
     //         </tbody>
     //     </table>
     // </>
-    <Tabel keyField="id" tambahData={true} columns={columns} data={hasil || []}/>
+    <Tabel keyField="id" tambahData={false} columns={columns} data={hasil || []}/>
   )
 }
 

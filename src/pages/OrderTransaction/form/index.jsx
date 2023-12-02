@@ -6,6 +6,7 @@ let FormDataOrderTransaction = ({pristine, submitting}) => {
 
     let getDataOrders = useSelector(selectorMaster.getDataOrders || [])
     let hasilDataOrderTransaction = getDataOrders.map((list) => {
+        console.log(list);
         let row = {
             id: list.id,
             order_number: list.order_number,
@@ -89,6 +90,13 @@ let FormDataOrderTransaction = ({pristine, submitting}) => {
                 readOnly={isEdit}
             />
         </div>
+        <Field 
+            name="user_id"
+            component={HiidenFiled}
+            type="hidden"
+            label="user_id"
+            readOnly={isEdit}
+        />
         <div className="col-12">
             <Field
                 name="amount"
@@ -138,12 +146,13 @@ let FormDataOrderTransaction = ({pristine, submitting}) => {
 
 const maptostate = (state) => {
     if (state.utility.getDataEdit !== null) {
-        console.log(state.utility.getDataEdit);
+        // console.log(state.utility.getDataEdit);
         return {
             initialValues: {
                 id: state.utility.getDataEdit.id,
                 order_id: state.utility.getDataEdit.order?.id,
                 payment_method_id: state.utility.getDataEdit.payment_method?.id,
+                description: state.utility.getDataEdit.description,
                 amount: state.utility.getDataEdit.amount,
                 date: state.utility.getDataEdit.date,
             },

@@ -1,5 +1,7 @@
 import { React, useEffect, masterActions, Tabel, utilityActions, useDispatch, selectorMaster, useSelector } from '../../../components';
 import { hapusDataOrders } from '../redux';
+import InvoiceOrder from '../pdf/invoice';
+import {QRCodeCanvas} from "qrcode.react";
 
 const TabelOrders = () => {
     const dispatch = useDispatch();
@@ -11,6 +13,10 @@ const TabelOrders = () => {
     }, [dispatch]);
 
     const columns = [
+        // {
+        //     dataField: "qr_code",
+        //     text: "QR Code",
+        // },
         {
             dataField: "order_number",
             text: "No Order",
@@ -83,12 +89,27 @@ const TabelOrders = () => {
             csvExport: false,
             headerClasses: "text-center",
             formatter: (rowcontent, row) => {
+                console.log(row);
                 return (
                     <div className="row text-center">
                         <div className="col-12 text-center">
                             <button
-                                onClick={() => showModal(row, true)}
-                                className="btn btn-primary"
+                                onClick={() => {
+                                    // console.log("ini button",row);
+                                    // qr code
+                                    // const qrCodeCanvas = document.querySelector("#qr")
+                                    // const qrCodeDataUri = qrCodeCanvas.toDataURL("image/png")
+                                    // console.log(qrCodeDataUri);
+                                    // InvoiceOrder(row, qrCodeCanvas)
+                                    InvoiceOrder(row)
+                                }}
+                                className="btn btn-secondary"
+                            >
+                                <i className="fa fa-print"></i>
+                            </button>
+                            <button
+                                onClick={() => showModal(row, "EDIT")}
+                                className="btn btn-primary ml-2"
                             >
                                 <i className="fa fa-edit"></i>
                             </button>
@@ -125,6 +146,7 @@ const TabelOrders = () => {
     let hasil = data.map((list) => {
         let row = {
             id: list.id,
+            // qr_code: <QRCodeCanvas value={list.order_number} id='qr' />,
             order_number: list.order_number,
             user: list.user,
             customer: list.customer,
@@ -135,6 +157,8 @@ const TabelOrders = () => {
             discount: list.discount,
             subtotal: list.subtotal,
             name: list.name,
+            orderTracking: list.orderTracking,
+            orderTransaction: list.orderTransaction,
             description: list.description,
             order_date: list.order_date,
         }

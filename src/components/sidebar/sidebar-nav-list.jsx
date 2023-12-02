@@ -1,13 +1,15 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import { PageSettings } from './../../config/page-settings.js';
+import { getItem } from '../helpers/function.jsx';
 
 class SidebarNavList extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			active: -1,
-			clicked: -1
+			clicked: -1,
+			user: getItem('role')
 		};
 	}
 
@@ -45,13 +47,30 @@ class SidebarNavList extends React.Component {
 							{this.props.data.children && (
 								<ul className={"sub-menu " + (((this.props.active || (this.props.clicked === -1 && match) || this.props.data.search) && !pageSidebarMinified) ? 'd-block ' : 'd-none')}>
 									{this.props.data.children && this.props.data.children.map((submenu, i) => (
-										<SidebarNavList
-											data={submenu} 
-											key={i} 
-											expand={(e) => this.handleExpand(e, i, match)}
-											active={i === this.state.active} 
-											clicked={this.state.clicked}
-										/>
+										// console.log(this.state.user.includes(submenu.role)),
+										// console.log(this.state.user),
+										// console.log(submenu.role),
+										// this.state.user.includes(submenu.role) &&
+										this.state.user.map((item) => {
+											if (item.name === submenu.role) {
+												return (
+													<SidebarNavList
+														data={submenu} 
+														key={i} 
+														expand={(e) => this.handleExpand(e, i, match)}
+														active={i === this.state.active} 
+														clicked={this.state.clicked}
+													/>
+												)
+											}
+										})
+											// <SidebarNavList
+											// 	data={submenu} 
+											// 	key={i} 
+											// 	expand={(e) => this.handleExpand(e, i, match)}
+											// 	active={i === this.state.active} 
+											// 	clicked={this.state.clicked}
+											// />
 									))}
 								</ul>
 							)}

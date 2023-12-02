@@ -9,30 +9,40 @@ import {
   useState,
   Field,
   connect,
+  useDispatch,
+  masterActions,
+  useSelector,
+  getItem,
+  ModalGlobal,
+  utilityActions,
+  selectorUtility,
+  selectorMaster
 } from "../../../components";
 import Menu from "../../../components/sidebar/menu";
-// import { useEffect, useState } from "react";
 import "react-sortable-tree/style.css"; // This only needs to be imported once in your app
+import FormDataHakAkses from "./form";
+import { hapusDataHakAkses } from "./redux";
 
 let HakAkses = () => {
-  const [treeDataM, setTreeData] = useState([]);
-  const [setcurrentNode] = useState([]);
-  const [aktif,setAktif] = useState(true);
+  const dispatch = useDispatch();
+  const data = useSelector(selectorMaster.getDataUsers);
+  const isEdit = useSelector(selectorUtility.isEdit);
+  const user = getItem("userdata")
+  let cekUsers = data[0] === undefined ? [] : data[0];
+  const [userData, setUserData] = useState([]);
 
+  
   useEffect(() => {
-    setTreeData(Menu);
-  }, []);
+    dispatch(masterActions.getDataUsers())
+    setUserData(cekUsers === undefined ? [] : cekUsers.filter((list) => list.id === user.id))
+  }, [dispatch]);
 
-  const selectThis = (node, path) => {
-    setcurrentNode({
-      node,
-      path: path,
-    });
-  };
-  const getNodeKey = ({ treeIndex }) => treeIndex;
-  const getDataUsers = ()=>{
-    setAktif(true)
-  }
+  const showModal = (data, isEdit) => {
+    dispatch(utilityActions.getDataEdit(data))
+    dispatch(utilityActions.showModal())
+    dispatch(utilityActions.isEdit(isEdit))
+}
+
   return (
     <PanelContent menu="Hak Akses Users" submenu="Manage Users">
       <div className="row">
@@ -41,13 +51,26 @@ let HakAkses = () => {
             name="user_id"
             label="Pilih User Id"
             placeholder="Masukan User Id"
-            onChange={()=>getDataUsers()}
-            options={[]}
+            onChange={(e) => {
+              setUserData(cekUsers.filter((list) => list.id === e))
+            }}
+            options={
+              cekUsers === 0
+                ? []
+                : cekUsers.map((list) => {
+                    let data = {
+                      value: list.id,
+                      name: list.name,
+                    };
+                    // console.log(data);
+                    return data;
+                  })
+            }
             component={ReanderSelect}
           />
         </div>
         <div className="col-6" >
-          <div style={{ height: 500 }}>
+          {/* <div style={{ height: 500 }}>
             <button className="btn btn-primary btn-block mt-4 mb-4" disabled={aktif}> Simpan Hak Akses </button>
             <SortableTree
               treeData={treeDataM}
@@ -136,15 +159,51 @@ let HakAkses = () => {
                 ),
               })}
             />
-          </div>
+          </div> */}
+
+          <button className="btn btn-primary btn-block mt-4 mb-4" onClick={(e) => {
+            e.preventDefault();
+            showModal(userData, false)
+          }}>Tambah hak akses</button>
+
+            <table className="table table-bordered table-striped table-hover">
+              <thead className="table-dark">
+                <tr>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+              </thead>
+                <tbody>
+                  {
+                      userData[0] === undefined ? [] : userData[0].role.map((list, index) => {
+                      return (
+                          <tr key={index}>
+                          <td>{list.name}</td>
+                          <td><button className="btn btn-danger" onClick={() => dispatch(hapusDataHakAkses(list))}><i className="fa fa-trash"></i></button></td>
+                          </tr>
+                      )
+                      })
+                  }
+                </tbody>
+            </table>
         </div>
       </div>
+      <ModalGlobal size="P" title={isEdit ? "Edit data hak akses" : "Tambah data hak akses"} content={<FormDataHakAkses />} />
     </PanelContent>
   );
 };
 
+const maptostate = (state) => {
+  return {
+    initialValues: {
+      user_id: getItem("userdata").id,
+    }
+  }
+}
+
 HakAkses = reduxForm({
   form: "HakAkses",
   enableReinitialize: true,
-})(HakAkses);
-export default connect(null)(HakAkses);
+})(HakAkses)
+
+export default connect(maptostate)(HakAkses);
