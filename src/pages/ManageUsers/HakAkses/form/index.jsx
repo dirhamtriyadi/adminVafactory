@@ -1,46 +1,13 @@
-import { selectorUtility, React, useSelector, useDispatch, HiidenFiled, Field, ReanderField, useEffect, ReanderSelect, selectorMaster, useState, connect, getItem, reduxForm } from "../../../../components"
+import { selectorUtility, React, useSelector, useDispatch, HiidenFiled, Field, InputGroup, useEffect, ReanderSelect, selectorMaster, useState, connect, getItem, reduxForm } from "../../../../components"
+import { ReanderMultiSelect } from "../../../../components/helpers/field"
 import { simpanDataHakAkses } from "../redux"
+
 
 let FormDataHakAkses = ({pristine, submitting}) => {
     const dispatch = useDispatch()
-    const data = useSelector(selectorMaster.getDataUsers)
-    const getDataEdit = useSelector(selectorUtility.getDataEdit)
     const isEdit = useSelector(selectorUtility.isEdit)
     const isLoading = useSelector(selectorUtility.isLoading)
 
-    // const data2 = [
-    //     "dashboard",
-    //     "master-jenis-pembayaran",
-    //     "master-jenis",
-    //     "data-customer",
-    //     "data-barang",
-    //     "penjualan",
-    //     "lihat-penjualan",
-    //     "uang-kas",
-    //     "data-users",
-    //     "laporan-uangkas",
-    //     "tracking",
-    //     "orders",
-    //     "order-transaction",
-    //     "order-tracking",
-    //     "hak-akses-users",
-    // ]
-    // console.log("ini get data edit", getDataEdit[0].role);
-    // const data1 = getDataEdit[0].role.map((list) => {
-    //     data2.map((list2) => {
-    //         if (list2 === list.name) {
-    //             console.log("ini list 2", list2);
-    //             return list2
-    //         }
-    //         return list2
-    //     })
-    //     // let data = list.name === "dashboard" ? null : '{ value: "dashboard", name: "dashboard" },'
-    //     // return data
-    // })
-    // // console.log("ini data 1", data1);
-    // useEffect(() => {
-    //      document.getElementById('name').focus()
-    // }, [isEdit])
   return (
     <div className="row">
         {isEdit ? (
@@ -58,31 +25,30 @@ let FormDataHakAkses = ({pristine, submitting}) => {
             <Field
                 name="user_id"
                 component={HiidenFiled}
-                type="text"
+                type="hidden"
                 label="Nama User"
-                placeholder="Masukan Nama User"
             />
         </div>
         <div className="col-12">
             <Field
                 name="name"
-                component={ReanderSelect}
+                component={ReanderMultiSelect}
                 options={[
-                    { value: "dashboard", name: "dashboard" },
-                    { value: "master-jenis-pembayaran", name: "master-jenis-pembayaran" },
-                    { value: "master-kategori", name: "master-kategori" },
-                    { value: "data-customer", name: "data-customer" },
-                    { value: "data-barang", name: "data-barang" },
-                    { value: "penjualan", name: "penjualan" },
-                    { value: "lihat-penjualan", name: "lihat-penjualan" },
-                    { value: "uang-kas", name: "uang-kas" },
-                    { value: "data-users", name: "data-users" },
-                    { value: "laporan-uang-kas", name: "laporan-uang-kas" },
-                    { value: "tracking", name: "tracking" },
-                    { value: "orders", name: "orders" },
-                    { value: "order-transaction", name: "order-transaction" },
-                    { value: "order-tracking", name: "order-tracking" },
-                    { value: "hak-akses-users", name: "hak-akses-users" },
+                    { value: "dashboard", label: "dashboard" },
+                    { value: "master-jenis-pembayaran", label: "master-jenis-pembayaran" },
+                    { value: "master-kategori", label: "master-kategori" },
+                    { value: "data-customer", label: "data-customer" },
+                    { value: "data-barang", label: "data-barang" },
+                    { value: "penjualan", label: "penjualan" },
+                    { value: "lihat-penjualan", label: "lihat-penjualan" },
+                    { value: "uang-kas", label: "uang-kas" },
+                    { value: "data-users", label: "data-users" },
+                    { value: "laporan-uang-kas", label: "laporan-uang-kas" },
+                    { value: "tracking", label: "tracking" },
+                    { value: "orders", label: "orders" },
+                    { value: "order-transaction", label: "order-transaction" },
+                    { value: "order-tracking", label: "order-tracking" },
+                    { value: "hak-akses-users", label: "hak-akses-users" },
                 ]}
                 type="text"
                 label="Nama Hak Akses"
@@ -102,10 +68,9 @@ let FormDataHakAkses = ({pristine, submitting}) => {
 }
 
 const maptostate = (state) => {
-    // console.log(state);
     return {
         initialValues: {
-            name: null,
+            name: [],
             user_id: state.form.HakAkses.values.user_id,
         },
     };

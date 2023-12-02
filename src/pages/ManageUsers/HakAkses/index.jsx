@@ -29,34 +29,13 @@ let HakAkses = () => {
   const isEdit = useSelector(selectorUtility.isEdit);
   const user = getItem("userdata")
   let cekUsers = data[0] === undefined ? [] : data[0];
-  const [treeDataM, setTreeData] = useState([]);
-  const [setcurrentNode] = useState([]);
-  const [aktif,setAktif] = useState(true);
   const [userData, setUserData] = useState([]);
 
-  // console.log(userData);
   
   useEffect(() => {
     dispatch(masterActions.getDataUsers())
     setUserData(cekUsers === undefined ? [] : cekUsers.filter((list) => list.id === user.id))
-  }, [dispatch])
-  
-  // useEffect(() => {
-  //   setTreeData(Menu);
-  //   dispatch(masterActions.getDataUsers())
-  //   setUserData(cekUsers === undefined ? [] : cekUsers.filter((list) => list.id === user.id))
-  // }, []);
-
-  // const selectThis = (node, path) => {
-  //   setcurrentNode({
-  //     node,
-  //     path: path,
-  //   });
-  // };
-  // const getNodeKey = ({ treeIndex }) => treeIndex;
-  // const getDataUsers = ()=>{
-  //   setAktif(true)
-  // }
+  }, [dispatch]);
 
   const showModal = (data, isEdit) => {
     dispatch(utilityActions.getDataEdit(data))
@@ -73,9 +52,7 @@ let HakAkses = () => {
             label="Pilih User Id"
             placeholder="Masukan User Id"
             onChange={(e) => {
-              // console.log("ini onchange",e);
               setUserData(cekUsers.filter((list) => list.id === e))
-              // console.log("dari onchange", userData);
             }}
             options={
               cekUsers === 0
@@ -199,7 +176,6 @@ let HakAkses = () => {
                 <tbody>
                   {
                       userData[0] === undefined ? [] : userData[0].role.map((list, index) => {
-                      // console.log(list);
                       return (
                           <tr key={index}>
                           <td>{list.name}</td>
@@ -208,10 +184,6 @@ let HakAkses = () => {
                       )
                       })
                   }
-                  {/* <tr>
-                      <td>users</td>
-                      <td>false</td>
-                  </tr> */}
                 </tbody>
             </table>
         </div>

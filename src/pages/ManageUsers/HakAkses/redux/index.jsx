@@ -1,10 +1,13 @@
 import { ToastNotification, utilityActions, Swal, deleteData, reset, putDataParams, masterActions, postData } from "../../../../components"
 
-export const simpanDataHakAkses = (data) => {
+export const simpanDataHakAkses = () => {
+  console.log("simpanDataHakAkses");
     return async (dispatch, getState) => {
         const state = getState()
         const data = state.form.FormDataHakAkses?.values
         const isEdit = state.utility.isEdit
+
+        console.log(data);
 
         dispatch(utilityActions.setLoading(true))
 
