@@ -1,4 +1,5 @@
 import { React, Link, useEffect, useState, useDispatch, useSelector, masterActions, selectorMaster } from "../../components";
+import { Line } from 'react-chartjs-3'
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,20 @@ const Dashboard = () => {
     })
   }, [getDataCash, getDataCashAll]);
   
-  // console.log("ini di dashboard", getDataCash);
+  let stateLabelUangMasuk = []
+  let stateLabelUangKeluar = []
+  let stateUangMasuk = []
+  let stateUangKeluar = []
+
+  getDataCashAll.map((item) => {
+    if (item.cash_flow_type === "UANGMASUK") {
+      stateLabelUangMasuk.push(item.transaction_date)
+      stateUangMasuk.push(item.amount)
+    } else {
+      stateLabelUangKeluar.push(item.transaction_date)
+      stateUangKeluar.push(item.amount)
+    }
+  })
 
   return (
     <div>
@@ -115,6 +129,96 @@ const Dashboard = () => {
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="row bg-white">
+          <div className="col-md-6">
+            <Line
+              data={{
+                labels: stateLabelUangMasuk,
+                datasets: [
+                  {
+                    label: "Uang Masuk",
+                    data: stateUangMasuk,
+                    backgroundColor: "rgba(0, 255, 0, 0.2)",
+                    borderColor: "rgba(0, 255, 0, 1)",
+                    borderWidth: 1,
+                  },
+                ],
+              }}
+              height={300}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        callback: function (value, index, values) {
+                          return value.toLocaleString("kr-KO");
+                        },
+                        beginAtZero: true,
+                      },
+                    },
+                  ],
+                },
+                legend: {
+                  labels: {
+                    fontSize: 25,
+                  },
+                },
+                tooltips: {
+                  callbacks: {
+                    label: function(tooltipItem, data) {
+                      return "Uang Masuk: " + tooltipItem.yLabel.toLocaleString("kr-KO");
+                    }
+                  }
+              }}}
+            />
+          </div>
+          <div className="col-md-6">
+            <Line
+              data={{
+                labels: stateLabelUangKeluar,
+                datasets: [
+                  {
+                    label: "Uang Keluar",
+                    data: stateUangKeluar,
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1,
+                  },
+                ],
+              }}
+              height={300}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        callback: function (value, index, values) {
+                          return value.toLocaleString("kr-KO");
+                        },
+                        beginAtZero: true,
+                      },
+                    },
+                  ],
+                },
+                legend: {
+                  labels: {
+                    fontSize: 25,
+                  },
+                },
+                tooltips: {
+                  callbacks: {
+                    label: function(tooltipItem, data) {
+                      return "Uang Keluar: " + tooltipItem.yLabel.toLocaleString("kr-KO");
+                    }
+                  }
+              }}}
+            />
           </div>
         </div>
       </div>
