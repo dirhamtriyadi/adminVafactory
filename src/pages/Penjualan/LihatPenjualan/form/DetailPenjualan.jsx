@@ -12,6 +12,7 @@ import {
   useEffect
 } from "../../../../components";
 import InvoicePenjualan from "../pdf/invoice";
+import invoiceCustomer from "../pdf/invoiceCustomer";
 import TabelDetailPenjualan from "../tabel/TabelDetailPenjualan";
 
 let DetailPenjualan = (props) => {
@@ -103,7 +104,11 @@ let DetailPenjualan = (props) => {
         <button
           type="button"
           className="btn btn-warning"
-          onClick={()=> InvoicePenjualan(laporanpdf)}
+          onClick={()=> (
+            InvoicePenjualan(laporanpdf)
+            // InvoicePenjualan(laporanpdf),
+            // invoiceCustomer(laporanpdf)
+          )}
         >
           Print Invoice
         </button>
