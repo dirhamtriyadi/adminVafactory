@@ -133,30 +133,30 @@ const routes = [
         component: () => <Tracking />,
     },
 
-    // Orders
+    // Order
     {
-        path: "/orders",
+        path: "/order",
         exact: true,
-        title: "Orders",
-        role: "orders",
+        title: "Order",
+        role: "order",
         component: () => <Orders />,
     },
 
     // Order Transaction
     {
-        path: "/order-transaction",
+        path: "/order-transaksi",
         exact: true,
-        title: "Order Transaction",
-        role: "order-transaction",
+        title: "Order Transaksi",
+        role: "order-transaksi",
         component: () => <OrderTransaction />,
     },
 
     // Order Tracking
     {
-        path: "/order-tracking",
+        path: "/order-pelacakan",
         exact: true,
-        title: "Order Tracking",
-        role: "order-tracking",
+        title: "Order Pelacakan",
+        role: "order-pelacakan",
         component: () => <OrderTracking />,
     },
 

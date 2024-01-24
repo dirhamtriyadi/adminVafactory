@@ -31,12 +31,12 @@ const Menu = [
     {
         path: "#",
         icon: "fas fa-archive",
-        title: "Orders",
-        role: ["orders", "order-transaction", "order-tracking"],
+        title: "Order",
+        role: ["order", "order-transaksi", "order-pelacakan"],
         children: [
-            { path: "/orders", title: "Orders", role: "orders" },
-            { path: "/order-transaction", title: "Order Transaction", role: "order-transaction" },
-            { path: "/order-tracking", title: "Order Tracking", role: "order-tracking" },
+            { path: "/order", title: "Orders", role: "orders" },
+            { path: "/order-transaksi", title: "Order Transaksi", role: "order-transaksi" },
+            { path: "/order-pelacakan", title: "Order Pelacakan", role: "order-pelacakan" },
         ]
     },
     // Uang Kas
@@ -96,11 +96,11 @@ const Menu = [
         icon: "fa fa-hdd",
         title: "Master",
         isShow: true,
-        role: ["master-jenis-pembayaran", "master-kategori", "tracking"],
+        role: ["master-jenis-pembayaran", "master-kategori", "pelacakan"],
         children: [
             { path: "/master-jenis-pembayaran", title: "Jenis Pembayaran", role: "master-jenis-pembayaran" },
             { path: "/master-kategori", title: "Kategori", role: "master-kategori" },
-            { path: "/tracking", title: "Tracking", role: "tracking" },
+            { path: "/pelacakan", title: "Pelacakan", role: "pelacakan" },
         ],
     },
     {

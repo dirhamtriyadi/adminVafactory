@@ -44,10 +44,10 @@ let FormDataHakAkses = ({pristine, submitting}) => {
                     { value: "uang-kas", label: "uang-kas" },
                     { value: "data-users", label: "data-users" },
                     { value: "laporan-uang-kas", label: "laporan-uang-kas" },
-                    { value: "tracking", label: "tracking" },
-                    { value: "orders", label: "orders" },
-                    { value: "order-transaction", label: "order-transaction" },
-                    { value: "order-tracking", label: "order-tracking" },
+                    { value: "pelacakan", label: "pelacakan" },
+                    { value: "order", label: "order" },
+                    { value: "order-transaksi", label: "order-transaksi" },
+                    { value: "order-pelacakan", label: "order-pelacakan" },
                     { value: "hak-akses-users", label: "hak-akses-users" },
                 ]}
                 type="text"
